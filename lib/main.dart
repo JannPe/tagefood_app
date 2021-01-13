@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'widgets/picker_meal.dart';
+import 'widgets/picker_food.dart';
 import 'widgets/day_row.dart';
 
 void main() {
@@ -100,6 +100,14 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
+  List<PickerFood> getFoodPickers() {
+    List<PickerFood> foodPickers = [];
+    food.forEach((foodItem) {
+      foodPickers.add(PickerFood(meal: foodItem));
+    });
+    return foodPickers;
+  }
+
   @override
   void initState() {
     super.initState();
@@ -173,14 +181,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     onSelectedItemChanged: (selectedIndex) {
                       _selectFood(selectedIndex);
                     },
-                    children: [
-                      PickerMeal(meal: food[0]),
-                      PickerMeal(meal: food[1]),
-                      PickerMeal(meal: food[2]),
-                      PickerMeal(meal: food[3]),
-                      PickerMeal(meal: food[4]),
-                      PickerMeal(meal: food[5]),
-                    ],
+                    children: getFoodPickers(),
                   ),
                 ),
               ],

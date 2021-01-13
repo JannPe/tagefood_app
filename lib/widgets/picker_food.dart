@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class PickerMeal extends StatelessWidget {
-  PickerMeal({this.meal});
+class PickerFood extends StatelessWidget {
+  PickerFood({this.meal});
 
   final String meal;
 
