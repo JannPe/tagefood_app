@@ -29,7 +29,14 @@ class MyHomePage extends StatefulWidget {
 
   final String title;
 
-  final dataMap = {};
+  final dataMap = {
+    2021112: {'todayB': 'chicken', 'todayL': 'vegan', 'todayD': 'fish'},
+    2021111: {'todayB': 'chicken', 'todayL': 'vegan', 'todayD': 'fish'},
+    2021110: {'todayB': 'chicken', 'todayL': 'vegan', 'todayD': 'fish'},
+    202119: {'todayB': 'chicken', 'todayL': 'vegan', 'todayD': 'fish'},
+    202118: {'todayB': 'chicken', 'todayL': 'vegan', 'todayD': 'fish'},
+    202117: {'todayB': 'chicken', 'todayL': 'vegan', 'todayD': 'fish'},
+  };
 
   @override
   _MyHomePageState createState() => _MyHomePageState(dataMap: dataMap);
@@ -138,8 +145,10 @@ class _MyHomePageState extends State<MyHomePage> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
                       DayRow(day: days[0], dataMap: dataMap[dateStampToday]),
-                      DayRow(day: days[1], dataMap: mockOldData1),
-                      DayRow(day: days[2], dataMap: mockOldData2),
+                      DayRow(
+                          day: days[1], dataMap: dataMap[dateStampToday - 1]),
+                      DayRow(
+                          day: days[2], dataMap: dataMap[dateStampToday - 2]),
                       DayRow(day: days[3], dataMap: mockOldData3),
                       DayRow(day: days[4], dataMap: mockOldData2),
                       DayRow(day: days[5], dataMap: mockOldData1),
