@@ -8,14 +8,14 @@ class DayRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print('day row $dataMap');
-    print('day row todayB ${dataMap['todayB']}');
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Text(
           day,
-          style: TextStyle(fontSize: 30.0),
+          style: day == 'Sat' || day == 'Sun'
+              ? TextStyle(fontSize: 30.0, color: Colors.blueGrey[300])
+              : TextStyle(fontSize: 30.0, color: Colors.blueGrey),
         ),
         Padding(
           padding: const EdgeInsets.symmetric(vertical: 2.0),

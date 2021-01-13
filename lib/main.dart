@@ -1,22 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'components/picker_meal.dart';
-import 'components/day_row.dart';
+import 'widgets/picker_meal.dart';
+import 'widgets/day_row.dart';
 
 void main() {
-  var dataMap = {
-    'todayB': '',
-    'todayL': '',
-    'todayD': '',
-  };
-
-  runApp(MyApp(dataMap: dataMap));
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  MyApp({this.dataMap});
-
-  var dataMap;
+  MyApp();
 
   @override
   Widget build(BuildContext context) {
@@ -27,16 +19,22 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.green,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: MyHomePage(title: 'TageFood', dataMap: dataMap),
+      home: MyHomePage(title: 'TageFood'),
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title, this.dataMap}) : super(key: key);
+  MyHomePage({Key key, this.title}) : super(key: key);
 
   final String title;
-  var dataMap;
+
+  final dataMap = {
+    'dateStamp': int,
+    'todayB': '',
+    'todayL': '',
+    'todayD': '',
+  };
 
   @override
   _MyHomePageState createState() => _MyHomePageState(dataMap: dataMap);
@@ -47,7 +45,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   List<String> meals = ['todayB', 'todayL', 'todayD'];
   List<String> food = ['vegan', 'veggie', 'fish', 'chicken', 'pig', 'cow'];
-  List<String> days = ['Mon', 'Tue', 'Wed', 'Thurs', 'Fri', 'Sat', 'Sun'];
+
   var dataMap;
 
   var mockOldData1 = {
@@ -68,30 +66,29 @@ class _MyHomePageState extends State<MyHomePage> {
     'todayD': 'fish',
   };
 
-  void getToday() {
+  List<String> days = ['Mon', 'Sun', 'Sat', 'Fri', 'Thurs', 'Wed', 'Tue'];
+  void getDays() {
     DateTime now = new DateTime.now();
-    print('now ${now.weekday}');
 
-    List<String> days;
+    dataMap['dateStamp'] = int.parse(
+        now.year.toString() + now.month.toString() + now.day.toString());
 
     if (now.weekday == 1) {
-      days = [
-        'Monday',
-        'Sunday',
-        'Saturday',
-      ];
-    } else if (now.weekday == 2) {
-      days = ['Tuesday', 'Monday', 'Sunday'];
+      return;
+    } else if (now.weekday >= 2) {
+      for (int i = 0; i < now.weekday - 1; i++) {
+        days.insert(0, days.removeLast());
+      }
     }
     print(days);
   }
 
-  String selectedTime;
+  String selectedTime = 'todayB';
   void _selectTime(selectedIndex) {
     selectedTime = meals[selectedIndex];
   }
 
-  String selectedFood;
+  String selectedFood = 'vegan';
   void _selectFood(selectedIndex) {
     selectedFood = food[selectedIndex];
   }
@@ -101,6 +98,12 @@ class _MyHomePageState extends State<MyHomePage> {
       dataMap[selectedTime] = selectedFood;
       print('updated to $dataMap');
     });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    getDays();
   }
 
   @override
@@ -127,8 +130,9 @@ class _MyHomePageState extends State<MyHomePage> {
                       DayRow(day: days[1], dataMap: mockOldData1),
                       DayRow(day: days[2], dataMap: mockOldData2),
                       DayRow(day: days[3], dataMap: mockOldData3),
-                      DayRow(day: days[3], dataMap: mockOldData2),
-                      DayRow(day: days[3], dataMap: mockOldData1),
+                      DayRow(day: days[4], dataMap: mockOldData2),
+                      DayRow(day: days[5], dataMap: mockOldData1),
+                      DayRow(day: days[6], dataMap: mockOldData1),
                     ],
                   ),
                 ),
