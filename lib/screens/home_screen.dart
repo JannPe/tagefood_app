@@ -10,12 +10,36 @@ class MyHomePage extends StatefulWidget {
   final String title;
 
   final dataMap = {
-    2021112: {'todayB': 'chicken', 'todayL': 'vegan', 'todayD': 'fish'},
-    2021111: {'todayB': 'veggie', 'todayL': 'pig', 'todayD': 'fish'},
-    2021110: {'todayB': 'veggie', 'todayL': 'fish', 'todayD': 'fish'},
-    202119: {'todayB': 'vegan', 'todayL': 'pig', 'todayD': 'cow'},
-    202118: {'todayB': 'veggie', 'todayL': 'chicken', 'todayD': 'fish'},
-    202117: {'todayB': 'pig', 'todayL': 'fish', 'todayD': 'vegan'},
+    new DateTime(2021, 1, 12): {
+      'todayB': 'chicken',
+      'todayL': 'vegan',
+      'todayD': 'fish'
+    },
+    new DateTime(2021, 1, 11): {
+      'todayB': 'veggie',
+      'todayL': 'pig',
+      'todayD': 'fish'
+    },
+    new DateTime(2021, 1, 10): {
+      'todayB': 'veggie',
+      'todayL': 'fish',
+      'todayD': 'fish'
+    },
+    new DateTime(2021, 1, 9): {
+      'todayB': 'vegan',
+      'todayL': 'pig',
+      'todayD': 'cow'
+    },
+    new DateTime(2021, 1, 8): {
+      'todayB': 'veggie',
+      'todayL': 'chicken',
+      'todayD': 'fish'
+    },
+    new DateTime(2021, 1, 7): {
+      'todayB': 'pig',
+      'todayL': 'fish',
+      'todayD': 'vegan'
+    },
   };
 
   @override
@@ -31,13 +55,13 @@ class _MyHomePageState extends State<MyHomePage> {
   var dataMap;
 
   List<String> days = ['Mon', 'Sun', 'Sat', 'Fri', 'Thurs', 'Wed', 'Tue'];
-  int dateStampToday;
+  DateTime dateStampToday;
   void getDays() {
     //and set currentDay for App and dataMap
     DateTime now = new DateTime.now();
 
-    dateStampToday = int.parse(
-        now.year.toString() + now.month.toString() + now.day.toString());
+    dateStampToday = new DateTime(now.year, now.month, now.day);
+    print('dateStampToday $dateStampToday');
 
     if (!dataMap.containsKey(dateStampToday)) {
       dataMap[dateStampToday] = {
@@ -46,6 +70,8 @@ class _MyHomePageState extends State<MyHomePage> {
         'todayD': '',
       };
     }
+
+    print('new dataMat $dataMap');
 
     if (now.weekday == 1) {
       return;
@@ -113,16 +139,46 @@ class _MyHomePageState extends State<MyHomePage> {
                               day: days[0], dataMap: dataMap[dateStampToday]),
                           DayRow(
                               day: days[1],
-                              dataMap: dataMap[dateStampToday - 1]),
+                              dataMap: dataMap[
+                                  dateStampToday.subtract(Duration(days: 1))]),
                           DayRow(
                               day: days[2],
-                              dataMap: dataMap[dateStampToday - 2]),
+                              dataMap: dataMap[
+                                  dateStampToday.subtract(Duration(days: 2))]),
                           DayRow(
                               day: days[3],
-                              dataMap: dataMap[dateStampToday - 3]),
-                          DayRow(day: days[4], dataMap: dataMap[202119]),
-                          DayRow(day: days[5], dataMap: dataMap[202118]),
-                          DayRow(day: days[6], dataMap: dataMap[202117]),
+                              dataMap: dataMap[
+                                  dateStampToday.subtract(Duration(days: 3))]),
+                          DayRow(
+                              day: days[4],
+                              dataMap: dataMap[
+                                  dateStampToday.subtract(Duration(days: 4))]),
+                          DayRow(
+                              day: days[5],
+                              dataMap: dataMap[
+                                  dateStampToday.subtract(Duration(days: 5))]),
+                          DayRow(
+                              day: days[6],
+                              dataMap: dataMap[
+                                  dateStampToday.subtract(Duration(days: 6))]),
+                          // DayRow(
+                          //     day: days[1],
+                          //     dataMap: dataMap[DateTime(dateStampToday.year, dateStampToday.month, dateStampToday.day - 1)]),
+                          // DayRow(
+                          //     day: days[2],
+                          //     dataMap: dataMap[dateStampToday - 2]),
+                          // DayRow(
+                          //     day: days[3],
+                          //     dataMap: dataMap[dateStampToday - 3]),
+                          // DayRow(
+                          //     day: days[4],
+                          //     dataMap: dataMap[dateStampToday - 4]),
+                          // DayRow(
+                          //     day: days[5],
+                          //     dataMap: dataMap[dateStampToday - 5]),
+                          // DayRow(
+                          //     day: days[6],
+                          //     dataMap: dataMap[dateStampToday - 6]),
                         ],
                       ),
                     ),
