@@ -128,62 +128,57 @@ class _MyHomePageState extends State<MyHomePage> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                Column(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.all(10.0),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: <Widget>[
-                          DayRow(
-                              day: days[0], dataMap: dataMap[dateStampToday]),
-                          DayRow(
-                              day: days[1],
-                              dataMap: dataMap[
-                                  dateStampToday.subtract(Duration(days: 1))]),
-                          DayRow(
-                              day: days[2],
-                              dataMap: dataMap[
-                                  dateStampToday.subtract(Duration(days: 2))]),
-                          DayRow(
-                              day: days[3],
-                              dataMap: dataMap[
-                                  dateStampToday.subtract(Duration(days: 3))]),
-                          DayRow(
-                              day: days[4],
-                              dataMap: dataMap[
-                                  dateStampToday.subtract(Duration(days: 4))]),
-                          DayRow(
-                              day: days[5],
-                              dataMap: dataMap[
-                                  dateStampToday.subtract(Duration(days: 5))]),
-                          DayRow(
-                              day: days[6],
-                              dataMap: dataMap[
-                                  dateStampToday.subtract(Duration(days: 6))]),
-                          // DayRow(
-                          //     day: days[1],
-                          //     dataMap: dataMap[DateTime(dateStampToday.year, dateStampToday.month, dateStampToday.day - 1)]),
-                          // DayRow(
-                          //     day: days[2],
-                          //     dataMap: dataMap[dateStampToday - 2]),
-                          // DayRow(
-                          //     day: days[3],
-                          //     dataMap: dataMap[dateStampToday - 3]),
-                          // DayRow(
-                          //     day: days[4],
-                          //     dataMap: dataMap[dateStampToday - 4]),
-                          // DayRow(
-                          //     day: days[5],
-                          //     dataMap: dataMap[dateStampToday - 5]),
-                          // DayRow(
-                          //     day: days[6],
-                          //     dataMap: dataMap[dateStampToday - 6]),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
+                Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: <Widget>[
+                      DayRow(day: days[0], dataMap: dataMap[dateStampToday]),
+                      DayRow(
+                          day: days[1],
+                          dataMap: dataMap[
+                              dateStampToday.subtract(Duration(days: 1))]),
+                      DayRow(
+                          day: days[2],
+                          dataMap: dataMap[
+                              dateStampToday.subtract(Duration(days: 2))]),
+                      DayRow(
+                          day: days[3],
+                          dataMap: dataMap[
+                              dateStampToday.subtract(Duration(days: 3))]),
+                      DayRow(
+                          day: days[4],
+                          dataMap: dataMap[
+                              dateStampToday.subtract(Duration(days: 4))]),
+                      DayRow(
+                          day: days[5],
+                          dataMap: dataMap[
+                              dateStampToday.subtract(Duration(days: 5))]),
+                      DayRow(
+                          day: days[6],
+                          dataMap: dataMap[
+                              dateStampToday.subtract(Duration(days: 6))]),
+                      // DayRow(
+                      //     day: days[1],
+                      //     dataMap: dataMap[DateTime(dateStampToday.year, dateStampToday.month, dateStampToday.day - 1)]),
+                      // DayRow(
+                      //     day: days[2],
+                      //     dataMap: dataMap[dateStampToday - 2]),
+                      // DayRow(
+                      //     day: days[3],
+                      //     dataMap: dataMap[dateStampToday - 3]),
+                      // DayRow(
+                      //     day: days[4],
+                      //     dataMap: dataMap[dateStampToday - 4]),
+                      // DayRow(
+                      //     day: days[5],
+                      //     dataMap: dataMap[dateStampToday - 5]),
+                      // DayRow(
+                      //     day: days[6],
+                      //     dataMap: dataMap[dateStampToday - 6]),
+                    ],
+                  ),
+                ), //Days Overview
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
@@ -223,7 +218,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       ),
                     ),
                   ],
-                ),
+                ), //Both Pickers
               ],
             ),
           ),
