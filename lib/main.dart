@@ -29,12 +29,7 @@ class MyHomePage extends StatefulWidget {
 
   final String title;
 
-  final dataMap = {
-    'dateStamp': int,
-    'todayB': '',
-    'todayL': '',
-    'todayD': '',
-  };
+  final dataMap = {};
 
   @override
   _MyHomePageState createState() => _MyHomePageState(dataMap: dataMap);
@@ -67,11 +62,20 @@ class _MyHomePageState extends State<MyHomePage> {
   };
 
   List<String> days = ['Mon', 'Sun', 'Sat', 'Fri', 'Thurs', 'Wed', 'Tue'];
+  int dateStampToday;
   void getDays() {
     DateTime now = new DateTime.now();
 
-    dataMap['dateStamp'] = int.parse(
+    dateStampToday = int.parse(
         now.year.toString() + now.month.toString() + now.day.toString());
+
+    if (!dataMap.containsKey(dateStampToday)) {
+      dataMap[dateStampToday] = {
+        'todayB': '',
+        'todayL': '',
+        'todayD': '',
+      };
+    }
 
     if (now.weekday == 1) {
       return;
@@ -80,7 +84,6 @@ class _MyHomePageState extends State<MyHomePage> {
         days.insert(0, days.removeLast());
       }
     }
-    print(days);
   }
 
   String selectedTime = 'todayB';
@@ -95,7 +98,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   void _submit() {
     setState(() {
-      dataMap[selectedTime] = selectedFood;
+      dataMap[dateStampToday][selectedTime] = selectedFood;
       print('updated to $dataMap');
     });
   }
@@ -134,7 +137,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
-                      DayRow(day: days[0], dataMap: dataMap),
+                      DayRow(day: days[0], dataMap: dataMap[dateStampToday]),
                       DayRow(day: days[1], dataMap: mockOldData1),
                       DayRow(day: days[2], dataMap: mockOldData2),
                       DayRow(day: days[3], dataMap: mockOldData3),
