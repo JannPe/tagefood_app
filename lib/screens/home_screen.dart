@@ -3,9 +3,7 @@ import 'package:flutter/material.dart';
 import '../widgets/food_image.dart';
 import '../widgets/day_row.dart';
 import '../screens/report_screen.dart';
-import 'dart:io';
 import 'dart:convert';
-import 'package:path_provider/path_provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class MyHomePage extends StatefulWidget {
@@ -13,99 +11,26 @@ class MyHomePage extends StatefulWidget {
 
   final String title;
 
-  final dataMap = {
-    new DateTime(2021, 1, 13): {
-      'todayB': 'chicken',
-      'todayL': 'vegan',
-      'todayD': 'fish'
-    },
-    new DateTime(2021, 1, 12): {
-      'todayB': 'chicken',
-      'todayL': 'vegan',
-      'todayD': 'fish'
-    },
-    new DateTime(2021, 1, 11): {
-      'todayB': 'veggie',
-      'todayL': 'pig',
-      'todayD': 'fish'
-    },
-    new DateTime(2021, 1, 10): {
-      'todayB': 'veggie',
-      'todayL': 'fish',
-      'todayD': 'fish'
-    },
-    new DateTime(2021, 1, 9): {
-      'todayB': 'vegan',
-      'todayL': 'pig',
-      'todayD': 'cow'
-    },
-    new DateTime(2021, 1, 8): {
-      'todayB': 'veggie',
-      'todayL': 'chicken',
-      'todayD': 'fish'
-    },
-    new DateTime(2021, 1, 7): {
-      'todayB': 'pig',
-      'todayL': 'fish',
-      'todayD': 'vegan'
-    },
-  };
-
   @override
-  _MyHomePageState createState() => _MyHomePageState(dataMap: dataMap);
+  _MyHomePageState createState() => _MyHomePageState();
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  _MyHomePageState({this.dataMap});
-
-  // File jsonFile;
-  // Directory dir;
-  // String fileName = 'myJSONFile.json';
-  // bool fileExists = false;
-  // Map<DateTime, String> fileContent;
-
-  // void createFile(Map<DateTime, Map> content, Directory dir, String fileName) {
-  //   print('Creating File');
-  //   File file = new File(dir.path + '/' + fileName);
-  //   file.createSync();
-  //   fileExists = true;
-  //   file.writeAsStringSync(jsonEncode(content));
-  //   print('jsonEncode(content) ${jsonEncode(content)}');
-  // }
-
-  // void writeToFile() {
-  //   print('Writing to a file');
-  //   Map<DateTime, Map> content = dataMap;
-  //   if (fileExists) {
-  //     print('File exists');
-  //     print('content$content');
-  //     Map<DateTime, Map> jsonFileContent =
-  //         json.decode(jsonFile.readAsStringSync());
-  //     print('json File Content $jsonFileContent');
-  //     jsonFileContent.addAll(content);
-  //     jsonFile.writeAsStringSync(jsonEncode(jsonFileContent));
-  //   } else {
-  //     print('Files does not exist');
-  //     createFile(content, dir, fileName);
-  //   }
-  //   this.setState(() {
-  //     fileContent = jsonDecode(jsonFile.readAsStringSync());
-  //   });
-  // } // youtube video approach
+  _MyHomePageState();
 
   List<String> meals = ['todayB', 'todayL', 'todayD'];
   List<String> food = ['vegan', 'veggie', 'fish', 'chicken', 'pig', 'cow'];
 
-  var dataMap;
+  Map dataMap;
 
   List<String> days = ['Mon', 'Sun', 'Sat', 'Fri', 'Thurs', 'Wed', 'Tue'];
   DateTime dateStampToday;
-
-  void getDays() {
+  void setCurrentDayAndGetDays() {
     //and set currentDay for App and dataMap
-    print('Getdays started');
+    print('setCurrentDayAndGetDays started');
     DateTime now = new DateTime.now();
     dateStampToday = new DateTime(now.year, now.month, now.day);
+
     if (!dataMap.containsKey(dateStampToday)) {
       dataMap[dateStampToday] = {
         'todayB': '',
@@ -113,7 +38,7 @@ class _MyHomePageState extends State<MyHomePage> {
         'todayD': '',
       };
     }
-    print('115 new dataMat $dataMap');
+    print('New dataMap $dataMap');
     if (now.weekday == 1) {
       return;
     } else if (now.weekday >= 2) {
@@ -136,17 +61,57 @@ class _MyHomePageState extends State<MyHomePage> {
   void _submit() {
     setState(() {
       dataMap[dateStampToday][selectedTime] = selectedFood;
-      print('141 updated locally to $dataMap');
-      //writeToFile();
+      print('141 updated locally for TODAY to ${dataMap[dateStampToday]}');
     });
+    setData();
   }
 
-  Map startingMap = {
+  Future setData() async {
+    dataMapJSON = jsonEncode(dataMap.map((key, value) {
+      String parsedKey = key.toString();
+      return MapEntry(parsedKey, value);
+    }));
+    print('dataMapJSON SET  $dataMapJSON');
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setString('dataMapJSON', dataMapJSON);
+  }
+
+  Map<dynamic, dynamic> startingMap = {
     new DateTime(2021, 1, 13).toString(): {
       'todayB': 'chicken',
       'todayL': 'vegan',
       'todayD': 'fish'
-    }
+    },
+    new DateTime(2021, 1, 12).toString(): {
+      'todayB': 'chicken',
+      'todayL': 'vegan',
+      'todayD': 'fish'
+    },
+    new DateTime(2021, 1, 11).toString(): {
+      'todayB': 'veggie',
+      'todayL': 'pig',
+      'todayD': 'fish'
+    },
+    new DateTime(2021, 1, 10).toString(): {
+      'todayB': 'veggie',
+      'todayL': 'fish',
+      'todayD': 'fish'
+    },
+    new DateTime(2021, 1, 9).toString(): {
+      'todayB': 'vegan',
+      'todayL': 'pig',
+      'todayD': 'cow'
+    },
+    new DateTime(2021, 1, 8).toString(): {
+      'todayB': 'veggie',
+      'todayL': 'chicken',
+      'todayD': 'fish'
+    },
+    new DateTime(2021, 1, 7).toString(): {
+      'todayB': 'pig',
+      'todayL': 'fish',
+      'todayD': 'vegan'
+    },
   };
 
   String dataMapJSON;
@@ -155,38 +120,26 @@ class _MyHomePageState extends State<MyHomePage> {
     print('getData started');
     try {
       SharedPreferences prefs = await SharedPreferences.getInstance();
-      print('jsonEncode(startingMap)${jsonEncode(startingMap)}');
-      print('LINE 160');
-      print('prefs.getString(dataMapJSON)${prefs.getString('dataMapJSON')}');
       dataMapJSON = (prefs.getString('dataMapJSON') ?? jsonEncode(startingMap));
-      print('startingMap$startingMap');
+      print('dataMapJSON GET  $dataMapJSON');
       await prefs.setString('dataMapJSON', dataMapJSON);
-      Map dataMapJSONDecoded = json.decode(dataMapJSON);
-      print('dataMapJSONDecoded $dataMapJSONDecoded');
-      dataMapJSONDecoded.forEach((k, v) {
-        k = DateTime.parse(k);
-        print('KEY Type ${k.runtimeType}');
+      Map<dynamic, dynamic> dataMapJSONDecoded = json.decode(dataMapJSON);
+      Map<DateTime, dynamic> dataMapJSONDecodedParsed =
+          dataMapJSONDecoded.map((key, value) {
+        DateTime parsedKey = DateTime.parse(key);
+        return MapEntry(parsedKey, value);
       });
-      print('dataMapJSON $dataMapJSON');
-      print('dataMap $dataMap');
-      print('getData ended');
+      dataMap = dataMapJSONDecodedParsed;
+      setState(() {});
     } catch (e) {
-      print('ERROR FROM LINE 161 $e');
+      print('ERROR FROM getData $e');
     }
   }
 
   @override
   void initState() {
     super.initState();
-    getData().then((value) => getDays());
-    // getApplicationDocumentsDirectory().then((Directory directory) {
-    //   dir = directory;
-    //   jsonFile = new File(dir.path + '/' + fileName);
-    //   fileExists = jsonFile.existsSync();
-    //   if (fileExists)
-    //     this.setState(
-    //         () => fileContent = jsonDecode(jsonFile.readAsStringSync()));
-    // }); // youtube video apporach
+    getData().then((value) => setCurrentDayAndGetDays());
   }
 
   List<FoodImage> getFoodImages(double suppliedHeight) {
@@ -224,27 +177,34 @@ class _MyHomePageState extends State<MyHomePage> {
                       DayRow(
                           day: days[1],
                           dataMap: dataMap[
-                              dateStampToday.subtract(Duration(days: 1))]),
+                                  dateStampToday.subtract(Duration(days: 1))] ??
+                              {'todayB': '', 'todayL': '', 'todayD': ''}),
+                      //{'todayB':'','todayL':'','todayD':''},
                       DayRow(
                           day: days[2],
                           dataMap: dataMap[
-                              dateStampToday.subtract(Duration(days: 2))]),
+                                  dateStampToday.subtract(Duration(days: 2))] ??
+                              {'todayB': '', 'todayL': '', 'todayD': ''}),
                       DayRow(
                           day: days[3],
                           dataMap: dataMap[
-                              dateStampToday.subtract(Duration(days: 3))]),
+                                  dateStampToday.subtract(Duration(days: 3))] ??
+                              {'todayB': '', 'todayL': '', 'todayD': ''}),
                       DayRow(
                           day: days[4],
                           dataMap: dataMap[
-                              dateStampToday.subtract(Duration(days: 4))]),
+                                  dateStampToday.subtract(Duration(days: 4))] ??
+                              {'todayB': '', 'todayL': '', 'todayD': ''}),
                       DayRow(
                           day: days[5],
                           dataMap: dataMap[
-                              dateStampToday.subtract(Duration(days: 5))]),
+                                  dateStampToday.subtract(Duration(days: 5))] ??
+                              {'todayB': '', 'todayL': '', 'todayD': ''}),
                       DayRow(
                           day: days[6],
                           dataMap: dataMap[
-                              dateStampToday.subtract(Duration(days: 6))]),
+                                  dateStampToday.subtract(Duration(days: 6))] ??
+                              {'todayB': '', 'todayL': '', 'todayD': ''}),
                     ],
                   ),
                 ), //Days Overview
@@ -252,7 +212,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
                     Container(
-                      height: 200.0,
+                      height: 150.0,
                       width: 100.0,
                       child: CupertinoPicker(
                         itemExtent: 50.0,
@@ -276,7 +236,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       ),
                     ),
                     Container(
-                      height: 200.0,
+                      height: 150.0,
                       width: 150.0,
                       child: CupertinoPicker(
                         itemExtent: 80.0,
