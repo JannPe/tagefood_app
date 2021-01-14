@@ -8,8 +8,6 @@ class DayRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print('dayrow dataMap $dataMap');
-    print('dayrow day $day');
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [

@@ -1,8 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import '../widgets/picker_food.dart';
+import '../widgets/food_image.dart';
 import '../widgets/day_row.dart';
 import '../screens/report_screen.dart';
+import 'dart:io';
+import 'dart:convert';
+import 'package:path_provider/path_provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class MyHomePage extends StatefulWidget {
   MyHomePage({Key key, this.title}) : super(key: key);
@@ -10,6 +14,11 @@ class MyHomePage extends StatefulWidget {
   final String title;
 
   final dataMap = {
+    new DateTime(2021, 1, 13): {
+      'todayB': 'chicken',
+      'todayL': 'vegan',
+      'todayD': 'fish'
+    },
     new DateTime(2021, 1, 12): {
       'todayB': 'chicken',
       'todayL': 'vegan',
@@ -49,6 +58,41 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   _MyHomePageState({this.dataMap});
 
+  // File jsonFile;
+  // Directory dir;
+  // String fileName = 'myJSONFile.json';
+  // bool fileExists = false;
+  // Map<DateTime, String> fileContent;
+
+  // void createFile(Map<DateTime, Map> content, Directory dir, String fileName) {
+  //   print('Creating File');
+  //   File file = new File(dir.path + '/' + fileName);
+  //   file.createSync();
+  //   fileExists = true;
+  //   file.writeAsStringSync(jsonEncode(content));
+  //   print('jsonEncode(content) ${jsonEncode(content)}');
+  // }
+
+  // void writeToFile() {
+  //   print('Writing to a file');
+  //   Map<DateTime, Map> content = dataMap;
+  //   if (fileExists) {
+  //     print('File exists');
+  //     print('content$content');
+  //     Map<DateTime, Map> jsonFileContent =
+  //         json.decode(jsonFile.readAsStringSync());
+  //     print('json File Content $jsonFileContent');
+  //     jsonFileContent.addAll(content);
+  //     jsonFile.writeAsStringSync(jsonEncode(jsonFileContent));
+  //   } else {
+  //     print('Files does not exist');
+  //     createFile(content, dir, fileName);
+  //   }
+  //   this.setState(() {
+  //     fileContent = jsonDecode(jsonFile.readAsStringSync());
+  //   });
+  // } // youtube video approach
+
   List<String> meals = ['todayB', 'todayL', 'todayD'];
   List<String> food = ['vegan', 'veggie', 'fish', 'chicken', 'pig', 'cow'];
 
@@ -56,13 +100,12 @@ class _MyHomePageState extends State<MyHomePage> {
 
   List<String> days = ['Mon', 'Sun', 'Sat', 'Fri', 'Thurs', 'Wed', 'Tue'];
   DateTime dateStampToday;
+
   void getDays() {
     //and set currentDay for App and dataMap
+    print('Getdays started');
     DateTime now = new DateTime.now();
-
     dateStampToday = new DateTime(now.year, now.month, now.day);
-    print('dateStampToday $dateStampToday');
-
     if (!dataMap.containsKey(dateStampToday)) {
       dataMap[dateStampToday] = {
         'todayB': '',
@@ -70,9 +113,7 @@ class _MyHomePageState extends State<MyHomePage> {
         'todayD': '',
       };
     }
-
-    print('new dataMat $dataMap');
-
+    print('115 new dataMat $dataMap');
     if (now.weekday == 1) {
       return;
     } else if (now.weekday >= 2) {
@@ -95,22 +136,68 @@ class _MyHomePageState extends State<MyHomePage> {
   void _submit() {
     setState(() {
       dataMap[dateStampToday][selectedTime] = selectedFood;
-      print('updated to $dataMap');
+      print('141 updated locally to $dataMap');
+      //writeToFile();
     });
   }
 
-  List<PickerFood> getFoodPickers() {
-    List<PickerFood> foodPickers = [];
-    food.forEach((foodItem) {
-      foodPickers.add(PickerFood(meal: foodItem));
-    });
-    return foodPickers;
+  Map startingMap = {
+    new DateTime(2021, 1, 13).toString(): {
+      'todayB': 'chicken',
+      'todayL': 'vegan',
+      'todayD': 'fish'
+    }
+  };
+
+  String dataMapJSON;
+
+  Future getData() async {
+    print('getData started');
+    try {
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      print('jsonEncode(startingMap)${jsonEncode(startingMap)}');
+      print('LINE 160');
+      print('prefs.getString(dataMapJSON)${prefs.getString('dataMapJSON')}');
+      dataMapJSON = (prefs.getString('dataMapJSON') ?? jsonEncode(startingMap));
+      print('startingMap$startingMap');
+      await prefs.setString('dataMapJSON', dataMapJSON);
+      Map dataMapJSONDecoded = json.decode(dataMapJSON);
+      print('dataMapJSONDecoded $dataMapJSONDecoded');
+      dataMapJSONDecoded.forEach((k, v) {
+        k = DateTime.parse(k);
+        print('KEY Type ${k.runtimeType}');
+      });
+      print('dataMapJSON $dataMapJSON');
+      print('dataMap $dataMap');
+      print('getData ended');
+    } catch (e) {
+      print('ERROR FROM LINE 161 $e');
+    }
   }
 
   @override
   void initState() {
     super.initState();
-    getDays();
+    getData().then((value) => getDays());
+    // getApplicationDocumentsDirectory().then((Directory directory) {
+    //   dir = directory;
+    //   jsonFile = new File(dir.path + '/' + fileName);
+    //   fileExists = jsonFile.existsSync();
+    //   if (fileExists)
+    //     this.setState(
+    //         () => fileContent = jsonDecode(jsonFile.readAsStringSync()));
+    // }); // youtube video apporach
+  }
+
+  List<FoodImage> getFoodImages(double suppliedHeight) {
+    List<FoodImage> foodPickers = [];
+    food.forEach((foodItem) {
+      foodPickers.add(FoodImage(
+        meal: foodItem,
+        height: suppliedHeight,
+      ));
+    });
+    return foodPickers;
   }
 
   @override
@@ -158,24 +245,6 @@ class _MyHomePageState extends State<MyHomePage> {
                           day: days[6],
                           dataMap: dataMap[
                               dateStampToday.subtract(Duration(days: 6))]),
-                      // DayRow(
-                      //     day: days[1],
-                      //     dataMap: dataMap[DateTime(dateStampToday.year, dateStampToday.month, dateStampToday.day - 1)]),
-                      // DayRow(
-                      //     day: days[2],
-                      //     dataMap: dataMap[dateStampToday - 2]),
-                      // DayRow(
-                      //     day: days[3],
-                      //     dataMap: dataMap[dateStampToday - 3]),
-                      // DayRow(
-                      //     day: days[4],
-                      //     dataMap: dataMap[dateStampToday - 4]),
-                      // DayRow(
-                      //     day: days[5],
-                      //     dataMap: dataMap[dateStampToday - 5]),
-                      // DayRow(
-                      //     day: days[6],
-                      //     dataMap: dataMap[dateStampToday - 6]),
                     ],
                   ),
                 ), //Days Overview
@@ -214,7 +283,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         onSelectedItemChanged: (selectedIndex) {
                           _selectFood(selectedIndex);
                         },
-                        children: getFoodPickers(),
+                        children: getFoodImages(20.0),
                       ),
                     ),
                   ],
