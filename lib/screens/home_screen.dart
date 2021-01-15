@@ -3,8 +3,7 @@ import 'package:flutter/material.dart';
 import '../widgets/food_image.dart';
 import '../widgets/day_row.dart';
 import '../screens/report_screen.dart';
-import 'dart:convert';
-import 'package:shared_preferences/shared_preferences.dart';
+import '../services/storage_manager.dart';
 
 class MyHomePage extends StatefulWidget {
   MyHomePage({Key key, this.title}) : super(key: key);
@@ -18,20 +17,30 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   _MyHomePageState();
 
-  List<String> meals = ['todayB', 'todayL', 'todayD'];
-  List<String> food = ['vegan', 'veggie', 'fish', 'chicken', 'pig', 'cow'];
+  StorageManager storageManager = StorageManager();
 
-  Map dataMap;
+  List<String> meals = ['todayB', 'todayL', 'todayD'];
+  List<String> food = [
+    'vegan',
+    'veggie',
+    'fish',
+    'chicken',
+    'pig',
+    'cow',
+    'none'
+  ];
+
+  Map dataMap; //central local storageMap to supply meals across the app
 
   List<String> days = ['Mon', 'Sun', 'Sat', 'Fri', 'Thurs', 'Wed', 'Tue'];
   DateTime dateStampToday;
   void setCurrentDayAndGetDays() {
-    //and set currentDay for App and dataMap
     print('setCurrentDayAndGetDays started');
     DateTime now = new DateTime.now();
     dateStampToday = new DateTime(now.year, now.month, now.day);
 
     if (!dataMap.containsKey(dateStampToday)) {
+      //update dataMap with key of todays date
       dataMap[dateStampToday] = {
         'todayB': '',
         'todayL': '',
@@ -39,7 +48,9 @@ class _MyHomePageState extends State<MyHomePage> {
       };
     }
     print('New dataMap $dataMap');
+
     if (now.weekday == 1) {
+      //set days List to match to today and correct prior days
       return;
     } else if (now.weekday >= 2) {
       for (int i = 0; i < now.weekday - 1; i++) {
@@ -63,94 +74,29 @@ class _MyHomePageState extends State<MyHomePage> {
       dataMap[dateStampToday][selectedTime] = selectedFood;
       print('141 updated locally for TODAY to ${dataMap[dateStampToday]}');
     });
-    setData();
-  }
-
-  Future setData() async {
-    dataMapJSON = jsonEncode(dataMap.map((key, value) {
-      String parsedKey = key.toString();
-      return MapEntry(parsedKey, value);
-    }));
-    print('dataMapJSON SET  $dataMapJSON');
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    await prefs.setString('dataMapJSON', dataMapJSON);
-  }
-
-  Map<dynamic, dynamic> startingMap = {
-    new DateTime(2021, 1, 13).toString(): {
-      'todayB': 'chicken',
-      'todayL': 'vegan',
-      'todayD': 'fish'
-    },
-    new DateTime(2021, 1, 12).toString(): {
-      'todayB': 'chicken',
-      'todayL': 'vegan',
-      'todayD': 'fish'
-    },
-    new DateTime(2021, 1, 11).toString(): {
-      'todayB': 'veggie',
-      'todayL': 'pig',
-      'todayD': 'fish'
-    },
-    new DateTime(2021, 1, 10).toString(): {
-      'todayB': 'veggie',
-      'todayL': 'fish',
-      'todayD': 'fish'
-    },
-    new DateTime(2021, 1, 9).toString(): {
-      'todayB': 'vegan',
-      'todayL': 'pig',
-      'todayD': 'cow'
-    },
-    new DateTime(2021, 1, 8).toString(): {
-      'todayB': 'veggie',
-      'todayL': 'chicken',
-      'todayD': 'fish'
-    },
-    new DateTime(2021, 1, 7).toString(): {
-      'todayB': 'pig',
-      'todayL': 'fish',
-      'todayD': 'vegan'
-    },
-  };
-
-  String dataMapJSON;
-
-  Future getData() async {
-    print('getData started');
-    try {
-      SharedPreferences prefs = await SharedPreferences.getInstance();
-      dataMapJSON = (prefs.getString('dataMapJSON') ?? jsonEncode(startingMap));
-      print('dataMapJSON GET  $dataMapJSON');
-      await prefs.setString('dataMapJSON', dataMapJSON);
-      Map<dynamic, dynamic> dataMapJSONDecoded = json.decode(dataMapJSON);
-      Map<DateTime, dynamic> dataMapJSONDecodedParsed =
-          dataMapJSONDecoded.map((key, value) {
-        DateTime parsedKey = DateTime.parse(key);
-        return MapEntry(parsedKey, value);
-      });
-      dataMap = dataMapJSONDecodedParsed;
-      setState(() {});
-    } catch (e) {
-      print('ERROR FROM getData $e');
-    }
   }
 
   @override
   void initState() {
     super.initState();
-    getData().then((value) => setCurrentDayAndGetDays());
+    storageManager
+        .getData()
+        .then((value) => dataMap = storageManager.dataMapJSONDecodedParsed)
+        .then((value) => print(
+            '150 dataMapJSONDecodedParsed ${storageManager.dataMapJSONDecodedParsed}'))
+        .then((value) => setCurrentDayAndGetDays())
+        .then((value) => setState(() {}));
   }
 
   List<FoodImage> getFoodImages(double suppliedHeight) {
-    List<FoodImage> foodPickers = [];
+    List<FoodImage> foodImages = [];
     food.forEach((foodItem) {
-      foodPickers.add(FoodImage(
+      foodImages.add(FoodImage(
         meal: foodItem,
         height: suppliedHeight,
       ));
     });
-    return foodPickers;
+    return foodImages;
   }
 
   @override

@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 class ReportScreen extends StatelessWidget {
   ReportScreen({this.food, this.dataMap});
 
-  List<String> food;
-  var dataMap;
+  final List<String> food;
+  final dataMap;
 
   List<Image> getFoodsInReports() {
     List<Image> foodImages = [];

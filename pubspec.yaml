@@ -48,12 +48,7 @@ flutter:
 
 
   assets:
-    - assets/vegan.png
-    - assets/veggie.png
-    - assets/fish.png
-    - assets/chicken.png
-    - assets/pig.png
-    - assets/cow.png
+    - assets/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
