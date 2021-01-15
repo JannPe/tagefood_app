@@ -31,8 +31,7 @@ class _MyHomePageState extends State<MyHomePage> {
     'cow'
   ];
 
-  //Map dataMap; //central local storageMap to supply meals across the app
-  Map dataMap;
+  Map dataMap; //central local storageMap to supply meals across the app
 
   List<String> days = ['Mon', 'Sun', 'Sat', 'Fri', 'Thurs', 'Wed', 'Tue'];
   DateTime dateStampToday;
@@ -83,13 +82,6 @@ class _MyHomePageState extends State<MyHomePage> {
     super.initState();
     setCurrentDayAndGetDays();
     setState(() {});
-    // storageManager
-    //     .getData()
-    //     .then((value) => dataMap = storageManager.dataMapJSONDecodedParsed)
-    //     .then((value) => print(
-    //         '150 dataMapJSONDecodedParsed ${storageManager.dataMapJSONDecodedParsed}'))
-    //     .then((value) => setCurrentDayAndGetDays())
-    //     .then((value) => setState(() {}));
   }
 
   List<FoodImage> getFoodImages(double suppliedHeight) {
@@ -131,7 +123,6 @@ class _MyHomePageState extends State<MyHomePage> {
                           dataMap: dataMap[
                                   dateStampToday.subtract(Duration(days: 1))] ??
                               {'todayB': '', 'todayL': '', 'todayD': ''}),
-                      //{'todayB':'','todayL':'','todayD':''},
                       DayRow(
                           day: days[2],
                           dataMap: dataMap[
@@ -211,7 +202,7 @@ class _MyHomePageState extends State<MyHomePage> {
               ],
             ),
           ),
-          ReportScreen(food: food, dataMap: dataMap),
+          ReportScreenWeek(),
         ],
       ),
       floatingActionButton: FloatingActionButton(
