@@ -12,7 +12,7 @@ class ReportScreen extends StatelessWidget {
       foodImages.add(
         Image.asset(
           'assets/$foodElement.png',
-          height: 100.0,
+          height: 70.0,
           fit: BoxFit.cover,
         ),
       );

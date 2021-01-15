@@ -6,16 +6,17 @@ import '../screens/report_screen.dart';
 import '../services/storage_manager.dart';
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
+  MyHomePage({Key key, this.title, this.dataMap}) : super(key: key);
 
   final String title;
+  final Map dataMap;
 
   @override
-  _MyHomePageState createState() => _MyHomePageState();
+  _MyHomePageState createState() => _MyHomePageState(dataMap: dataMap);
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  _MyHomePageState();
+  _MyHomePageState({this.dataMap});
 
   StorageManager storageManager = StorageManager();
 
@@ -30,7 +31,8 @@ class _MyHomePageState extends State<MyHomePage> {
     'cow'
   ];
 
-  Map dataMap; //central local storageMap to supply meals across the app
+  //Map dataMap; //central local storageMap to supply meals across the app
+  Map dataMap;
 
   List<String> days = ['Mon', 'Sun', 'Sat', 'Fri', 'Thurs', 'Wed', 'Tue'];
   DateTime dateStampToday;
@@ -79,13 +81,15 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   void initState() {
     super.initState();
-    storageManager
-        .getData()
-        .then((value) => dataMap = storageManager.dataMapJSONDecodedParsed)
-        .then((value) => print(
-            '150 dataMapJSONDecodedParsed ${storageManager.dataMapJSONDecodedParsed}'))
-        .then((value) => setCurrentDayAndGetDays())
-        .then((value) => setState(() {}));
+    setCurrentDayAndGetDays();
+    setState(() {});
+    // storageManager
+    //     .getData()
+    //     .then((value) => dataMap = storageManager.dataMapJSONDecodedParsed)
+    //     .then((value) => print(
+    //         '150 dataMapJSONDecodedParsed ${storageManager.dataMapJSONDecodedParsed}'))
+    //     .then((value) => setCurrentDayAndGetDays())
+    //     .then((value) => setState(() {}));
   }
 
   List<FoodImage> getFoodImages(double suppliedHeight) {
@@ -169,18 +173,24 @@ class _MyHomePageState extends State<MyHomePage> {
                           Center(
                             child: Text(
                               'Breakfast',
-                              textAlign: TextAlign.center,
+                              style: TextStyle(fontFamily: 'JosefinSans'),
                             ),
                           ),
                           Center(
-                            child: Text('Lunch'),
+                            child: Text(
+                              'Lunch',
+                              style: TextStyle(fontFamily: 'JosefinSans'),
+                            ),
                           ),
                           Center(
-                            child: Text('Dinner'),
+                            child: Text(
+                              'Dinner',
+                              style: TextStyle(fontFamily: 'JosefinSans'),
+                            ),
                           ),
                         ],
                       ),
-                    ),
+                    ), // Meal Picker
                     Container(
                       height: 150.0,
                       width: 150.0,
@@ -193,7 +203,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         },
                         children: getFoodImages(20.0),
                       ),
-                    ),
+                    ), //Food Picker
                   ],
                 ), //Both Pickers
               ],

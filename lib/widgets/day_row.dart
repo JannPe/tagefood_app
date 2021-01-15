@@ -14,8 +14,12 @@ class DayRow extends StatelessWidget {
         Text(
           day,
           style: day == 'Sat' || day == 'Sun'
-              ? TextStyle(fontSize: 30.0, color: Colors.blueGrey[300])
-              : TextStyle(fontSize: 30.0, color: Colors.blueGrey),
+              ? TextStyle(
+                  fontSize: 30.0,
+                  color: Colors.blueGrey[300],
+                  fontFamily: 'Kalam')
+              : TextStyle(
+                  fontSize: 30.0, color: Colors.blueGrey, fontFamily: 'Kalam'),
         ),
         Padding(
           padding: const EdgeInsets.symmetric(vertical: 2.0),
