@@ -30,11 +30,11 @@ class _LoadingScreenState extends State<LoadingScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: SpinKitFoldingCube(
-          color: Colors.white,
-          size: 100.0,
+    return Container(
+      color: Colors.white,
+      child: Center(
+        child: SpinKitFadingCube(
+          color: Colors.green,
         ),
       ),
     );
