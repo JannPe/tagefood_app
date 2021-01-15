@@ -21,13 +21,13 @@ class _MyHomePageState extends State<MyHomePage> {
 
   List<String> meals = ['todayB', 'todayL', 'todayD'];
   List<String> food = [
+    'none',
     'vegan',
     'veggie',
     'fish',
     'chicken',
     'pig',
-    'cow',
-    'none'
+    'cow'
   ];
 
   Map dataMap; //central local storageMap to supply meals across the app
@@ -185,6 +185,8 @@ class _MyHomePageState extends State<MyHomePage> {
                       height: 150.0,
                       width: 150.0,
                       child: CupertinoPicker(
+                        scrollController:
+                            FixedExtentScrollController(initialItem: 1),
                         itemExtent: 80.0,
                         onSelectedItemChanged: (selectedIndex) {
                           _selectFood(selectedIndex);
