@@ -31,7 +31,7 @@ class DayRow extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Image.asset(
-                    'assets/${dataMap['todayB']}.png',
+                    'assets/${dataMap['Breakfast']}.png',
                     width: 50.0,
                     fit: BoxFit.cover,
                   ),
@@ -46,7 +46,7 @@ class DayRow extends StatelessWidget {
                     ),
                   ),
                   Image.asset(
-                    'assets/${dataMap['todayL']}.png',
+                    'assets/${dataMap['Lunch']}.png',
                     width: 50.0,
                     fit: BoxFit.cover,
                   ),
@@ -61,7 +61,7 @@ class DayRow extends StatelessWidget {
                     ),
                   ),
                   Image.asset(
-                    'assets/${dataMap['todayD']}.png',
+                    'assets/${dataMap['Dinner']}.png',
                     width: 50.0,
                     fit: BoxFit.cover,
                   ),

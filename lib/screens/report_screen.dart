@@ -2,11 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
 
 class ReportScreenWeek extends StatefulWidget {
+  ReportScreenWeek({this.dataMap});
+
+  final Map<DateTime, dynamic> dataMap;
+  final Map<String, int> distributionFood = {};
+
   @override
   _ReportScreenWeekState createState() => _ReportScreenWeekState();
 }
 
 class _ReportScreenWeekState extends State<ReportScreenWeek> {
+  _ReportScreenWeekState();
+
   int touchedIndex;
 
   @override

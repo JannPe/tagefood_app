@@ -20,7 +20,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   StorageManager storageManager = StorageManager();
 
-  List<String> meals = ['todayB', 'todayL', 'todayD'];
+  List<String> meals = ['Breakfast', 'Lunch', 'Dinner'];
   List<String> food = [
     'none',
     'vegan',
@@ -43,9 +43,9 @@ class _MyHomePageState extends State<MyHomePage> {
     if (!dataMap.containsKey(dateStampToday)) {
       //update dataMap with key of todays date
       dataMap[dateStampToday] = {
-        'todayB': '',
-        'todayL': '',
-        'todayD': '',
+        'Breakfast': '',
+        'Lunch': '',
+        'Dinner': '',
       };
     }
     print('New dataMap $dataMap');
@@ -60,7 +60,7 @@ class _MyHomePageState extends State<MyHomePage> {
     }
   }
 
-  String selectedTime = 'todayB';
+  String selectedTime = 'Breakfast';
   void _selectTime(selectedIndex) {
     selectedTime = meals[selectedIndex];
   }
@@ -122,32 +122,32 @@ class _MyHomePageState extends State<MyHomePage> {
                           day: days[1],
                           dataMap: dataMap[
                                   dateStampToday.subtract(Duration(days: 1))] ??
-                              {'todayB': '', 'todayL': '', 'todayD': ''}),
+                              {'Breakfast': '', 'Lunch': '', 'Dinner': ''}),
                       DayRow(
                           day: days[2],
                           dataMap: dataMap[
                                   dateStampToday.subtract(Duration(days: 2))] ??
-                              {'todayB': '', 'todayL': '', 'todayD': ''}),
+                              {'Breakfast': '', 'Lunch': '', 'Dinner': ''}),
                       DayRow(
                           day: days[3],
                           dataMap: dataMap[
                                   dateStampToday.subtract(Duration(days: 3))] ??
-                              {'todayB': '', 'todayL': '', 'todayD': ''}),
+                              {'Breakfast': '', 'Lunch': '', 'Dinner': ''}),
                       DayRow(
                           day: days[4],
                           dataMap: dataMap[
                                   dateStampToday.subtract(Duration(days: 4))] ??
-                              {'todayB': '', 'todayL': '', 'todayD': ''}),
+                              {'Breakfast': '', 'Lunch': '', 'Dinner': ''}),
                       DayRow(
                           day: days[5],
                           dataMap: dataMap[
                                   dateStampToday.subtract(Duration(days: 5))] ??
-                              {'todayB': '', 'todayL': '', 'todayD': ''}),
+                              {'Breakfast': '', 'Lunch': '', 'Dinner': ''}),
                       DayRow(
                           day: days[6],
                           dataMap: dataMap[
                                   dateStampToday.subtract(Duration(days: 6))] ??
-                              {'todayB': '', 'todayL': '', 'todayD': ''}),
+                              {'Breakfast': '', 'Lunch': '', 'Dinner': ''}),
                     ],
                   ),
                 ), //Days Overview
@@ -202,7 +202,7 @@ class _MyHomePageState extends State<MyHomePage> {
               ],
             ),
           ),
-          ReportScreenWeek(),
+          ReportScreenWeek(dataMap: dataMap),
         ],
       ),
       floatingActionButton: FloatingActionButton(

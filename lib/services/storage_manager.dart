@@ -6,40 +6,35 @@ class StorageManager {
   String dataMapJSON;
 
   Map<dynamic, dynamic> startingMap = {
+    new DateTime(2021, 1, 14).toString(): {
+      'Breakfast': 'fish',
+      'Lunch': 'none',
+      'Dinner': 'vegan'
+    },
     new DateTime(2021, 1, 13).toString(): {
-      'todayB': 'chicken',
-      'todayL': 'vegan',
-      'todayD': 'fish'
+      'Breakfast': 'chicken',
+      'Lunch': 'vegan',
+      'Dinner': 'fish'
     },
     new DateTime(2021, 1, 12).toString(): {
-      'todayB': 'chicken',
-      'todayL': 'vegan',
-      'todayD': 'fish'
+      'Breakfast': 'chicken',
+      'Lunch': 'vegan',
+      'Dinner': 'fish'
     },
     new DateTime(2021, 1, 11).toString(): {
-      'todayB': 'veggie',
-      'todayL': 'pig',
-      'todayD': 'fish'
+      'Breakfast': 'veggie',
+      'Lunch': 'pig',
+      'Dinner': 'fish'
     },
     new DateTime(2021, 1, 10).toString(): {
-      'todayB': 'veggie',
-      'todayL': 'fish',
-      'todayD': 'fish'
+      'Breakfast': 'veggie',
+      'Lunch': 'fish',
+      'Dinner': 'fish'
     },
     new DateTime(2021, 1, 9).toString(): {
-      'todayB': 'vegan',
-      'todayL': 'pig',
-      'todayD': 'cow'
-    },
-    new DateTime(2021, 1, 8).toString(): {
-      'todayB': 'veggie',
-      'todayL': 'chicken',
-      'todayD': 'fish'
-    },
-    new DateTime(2021, 1, 7).toString(): {
-      'todayB': 'pig',
-      'todayL': 'fish',
-      'todayD': 'vegan'
+      'Breakfast': 'vegan',
+      'Lunch': 'pig',
+      'Dinner': 'cow'
     },
   };
   Map<DateTime, dynamic> dataMapJSONDecodedParsed;
