@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:tagefood_app/screens/report_screen.dart';
 import '../widgets/food_image.dart';
 import '../widgets/day_row.dart';
-import '../screens/report_screenOLD.dart';
 import '../services/storage_manager.dart';
 
 class MyHomePage extends StatefulWidget {
@@ -79,11 +78,22 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   Map constructDataMapForSpecificSevenDays(int start, int end) {
-    Map dataMapSelectedSevenDays = Map.from(dataMap)
-      ..removeWhere((key, value) =>
-          key.isBefore(dateStampToday.subtract(Duration(days: end))) &&
-          key.isAfter(dateStampToday.subtract(Duration(days: start))));
-    print('dataMapSelectedSevenDays   $dataMapSelectedSevenDays');
+    Map dataMapSelectedSevenDays;
+    print('dataMap construct  $dataMap');
+    print('dateStampToday construct  $dateStampToday');
+    dataMap.forEach((key, value) {
+      if (key.isBefore(dateStampToday.subtract(Duration(days: start))) &&
+          key.isAfter(dateStampToday.subtract(Duration(days: end)))) {
+        dataMapSelectedSevenDays[key] = value;
+      }
+    });
+
+    // Map dataMapSelectedSevenDays = Map.from(dataMap)
+    //   ..removeWhere((key, value) =>
+    //       key.isBefore(dateStampToday.subtract(Duration(days: end))) &&
+    //       key.isAfter(dateStampToday.subtract(Duration(days: start))));
+
+    print('dataMapSelectedSevenDays construct   $dataMapSelectedSevenDays');
     return dataMapSelectedSevenDays;
   }
 
@@ -215,7 +225,7 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
           ReportScreen(
               dataMapSpecificSevenDays:
-                  constructDataMapForSpecificSevenDays(0, 6)),
+                  constructDataMapForSpecificSevenDays(0, 1)),
         ],
       ),
       floatingActionButton: FloatingActionButton(

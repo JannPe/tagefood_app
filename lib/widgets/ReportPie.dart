@@ -16,71 +16,6 @@ class _ReportPieState extends State<ReportPie> {
 
   int touchedIndex;
 
-  // void constructDataMapLastSevenDays(int start, int end) {
-  //   dataMapLastSevenDays = Map.from(dataMap)
-  //     ..removeWhere((key, value) =>
-  //         key.isBefore(dateStampToday.subtract(Duration(days: end))) &&
-  //         key.isAfter(dateStampToday.subtract(Duration(days: start)))
-  //     );
-  //   print('dataMapLastSevenDays   $dataMapLastSevenDays');
-  // }
-
-  // void countFoodLastSevenDays() {
-  //   dataMapLastSevenDays.forEach((key, value) {
-  //     value.forEach((key, value) {
-  //       switch (value) {
-  //         case 'none':
-  //           {
-  //             countedMealsLastSevenDays['none']++;
-  //           }
-  //           break;
-  //
-  //         case 'vegan':
-  //           {
-  //             countedMealsLastSevenDays['vegan']++;
-  //           }
-  //           break;
-  //
-  //         case 'veggie':
-  //           {
-  //             countedMealsLastSevenDays['veggie']++;
-  //           }
-  //           break;
-  //
-  //         case 'fish':
-  //           {
-  //             countedMealsLastSevenDays['fish']++;
-  //           }
-  //           break;
-  //
-  //         case 'chicken':
-  //           {
-  //             countedMealsLastSevenDays['chicken']++;
-  //           }
-  //           break;
-  //         case 'pig':
-  //           {
-  //             countedMealsLastSevenDays['pig']++;
-  //           }
-  //           break;
-  //         case 'cow':
-  //           {
-  //             countedMealsLastSevenDays['cow']++;
-  //           }
-  //           break;
-  //         case '':
-  //           {}
-  //           break;
-  //
-  //         default:
-  //           {}
-  //           break;
-  //       }
-  //     });
-  //   });
-  //   print('countedMealsLastSevenDays $countedMealsLastSevenDays');
-  // }
-
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -118,7 +53,7 @@ class _ReportPieState extends State<ReportPie> {
     );
   }
 
-  List<PieChartSectionData> showingSections(countedMealsLastSevenDays) {
+  List<PieChartSectionData> showingSections(countedFood) {
     return List.generate(7, (i) {
       final isTouched = i == touchedIndex;
       final double fontSize = isTouched ? 23 : 20;
@@ -129,8 +64,8 @@ class _ReportPieState extends State<ReportPie> {
         case 0:
           return PieChartSectionData(
             color: Colors.green[200],
-            value: countedMealsLastSevenDays['vegan'],
-            title: countedMealsLastSevenDays['vegan'].toInt().toString(),
+            value: countedFood['vegan'],
+            title: countedFood['vegan'].toInt().toString(),
             radius: radius,
             titleStyle: TextStyle(
                 fontSize: fontSize,
@@ -146,8 +81,8 @@ class _ReportPieState extends State<ReportPie> {
         case 1:
           return PieChartSectionData(
             color: Colors.green[400],
-            value: countedMealsLastSevenDays['veggie'],
-            title: countedMealsLastSevenDays['veggie'].toInt().toString(),
+            value: countedFood['veggie'],
+            title: countedFood['veggie'].toInt().toString(),
             radius: radius,
             titleStyle: TextStyle(
                 fontSize: fontSize,
@@ -163,8 +98,8 @@ class _ReportPieState extends State<ReportPie> {
         case 2:
           return PieChartSectionData(
             color: Colors.blueAccent,
-            value: countedMealsLastSevenDays['fish'],
-            title: countedMealsLastSevenDays['fish'].toInt().toString(),
+            value: countedFood['fish'],
+            title: countedFood['fish'].toInt().toString(),
             radius: radius,
             titleStyle: TextStyle(
                 fontSize: fontSize,
@@ -180,8 +115,8 @@ class _ReportPieState extends State<ReportPie> {
         case 3:
           return PieChartSectionData(
             color: Colors.amberAccent,
-            value: countedMealsLastSevenDays['chicken'],
-            title: countedMealsLastSevenDays['chicken'].toInt().toString(),
+            value: countedFood['chicken'],
+            title: countedFood['chicken'].toInt().toString(),
             radius: radius,
             titleStyle: TextStyle(
                 fontSize: fontSize,
@@ -197,8 +132,8 @@ class _ReportPieState extends State<ReportPie> {
         case 4:
           return PieChartSectionData(
             color: Colors.deepOrangeAccent[200],
-            value: countedMealsLastSevenDays['pig'],
-            title: countedMealsLastSevenDays['pig'].toInt().toString(),
+            value: countedFood['pig'],
+            title: countedFood['pig'].toInt().toString(),
             radius: radius,
             titleStyle: TextStyle(
                 fontSize: fontSize,
@@ -214,8 +149,8 @@ class _ReportPieState extends State<ReportPie> {
         case 5:
           return PieChartSectionData(
             color: Colors.deepPurpleAccent[200],
-            value: countedMealsLastSevenDays['cow'],
-            title: countedMealsLastSevenDays['cow'].toInt().toString(),
+            value: countedFood['cow'],
+            title: countedFood['cow'].toInt().toString(),
             radius: radius,
             titleStyle: TextStyle(
                 fontSize: fontSize,
@@ -231,8 +166,8 @@ class _ReportPieState extends State<ReportPie> {
         case 6:
           return PieChartSectionData(
             color: Colors.blueGrey,
-            value: countedMealsLastSevenDays['none'],
-            title: countedMealsLastSevenDays['none'].toInt().toString(),
+            value: countedFood['none'],
+            title: countedFood['none'].toInt().toString(),
             radius: radius,
             titleStyle: TextStyle(
                 fontSize: fontSize,
