@@ -1,8 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:tagefood_app/screens/report_screen.dart';
 import '../widgets/food_image.dart';
 import '../widgets/day_row.dart';
-import '../screens/report_screen.dart';
+import '../screens/report_screenOLD.dart';
 import '../services/storage_manager.dart';
 
 class MyHomePage extends StatefulWidget {
@@ -75,6 +76,15 @@ class _MyHomePageState extends State<MyHomePage> {
       print('141 updated locally for TODAY to ${dataMap[dateStampToday]}');
       storageManager.setData(dataMap);
     });
+  }
+
+  Map constructDataMapForSpecificSevenDays(int start, int end) {
+    Map dataMapSelectedSevenDays = Map.from(dataMap)
+      ..removeWhere((key, value) =>
+          key.isBefore(dateStampToday.subtract(Duration(days: end))) &&
+          key.isAfter(dateStampToday.subtract(Duration(days: start))));
+    print('dataMapSelectedSevenDays   $dataMapSelectedSevenDays');
+    return dataMapSelectedSevenDays;
   }
 
   @override
@@ -203,7 +213,9 @@ class _MyHomePageState extends State<MyHomePage> {
               ],
             ),
           ),
-          ReportScreenWeek(dataMap: dataMap, dateStampToday: dateStampToday),
+          ReportScreen(
+              dataMapSpecificSevenDays:
+                  constructDataMapForSpecificSevenDays(0, 6)),
         ],
       ),
       floatingActionButton: FloatingActionButton(
