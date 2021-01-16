@@ -6,6 +6,11 @@ class StorageManager {
   String dataMapJSON;
 
   Map<dynamic, dynamic> startingMap = {
+    new DateTime(2021, 1, 15).toString(): {
+      'Breakfast': 'none',
+      'Lunch': 'veggie',
+      'Dinner': 'fish'
+    },
     new DateTime(2021, 1, 14).toString(): {
       'Breakfast': 'fish',
       'Lunch': 'none',
@@ -40,11 +45,11 @@ class StorageManager {
   Map<DateTime, dynamic> dataMapJSONDecodedParsed;
 
   Future getData() async {
-    print('getData started');
+    //print('getData started');
     try {
       SharedPreferences prefs = await SharedPreferences.getInstance();
       dataMapJSON = (prefs.getString('dataMapJSON') ?? jsonEncode(startingMap));
-      print('dataMapJSON GET  $dataMapJSON');
+      //print('dataMapJSON GET  $dataMapJSON');
       await prefs.setString('dataMapJSON', dataMapJSON);
       Map<dynamic, dynamic> dataMapJSONDecoded = json.decode(dataMapJSON);
       dataMapJSONDecodedParsed = dataMapJSONDecoded.map((key, value) {
@@ -62,7 +67,7 @@ class StorageManager {
       String parsedKey = key.toString();
       return MapEntry(parsedKey, value);
     }));
-    print('dataMapJSON SET  $dataMapJSON');
+    //print('dataMapJSON SET  $dataMapJSON');
     SharedPreferences prefs = await SharedPreferences.getInstance();
     await prefs.setString('dataMapJSON', dataMapJSON);
   }

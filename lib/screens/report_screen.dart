@@ -1,66 +1,155 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
 
 class ReportScreenWeek extends StatefulWidget {
-  ReportScreenWeek({this.dataMap});
+  ReportScreenWeek({this.dataMap, this.dateStampToday});
 
   final Map<DateTime, dynamic> dataMap;
-  final Map<String, int> distributionFood = {};
+  final DateTime dateStampToday;
 
   @override
-  _ReportScreenWeekState createState() => _ReportScreenWeekState();
+  _ReportScreenWeekState createState() =>
+      _ReportScreenWeekState(dataMap: dataMap, dateStampToday: dateStampToday);
 }
 
 class _ReportScreenWeekState extends State<ReportScreenWeek> {
-  _ReportScreenWeekState();
+  _ReportScreenWeekState({this.dataMap, this.dateStampToday});
 
   int touchedIndex;
+  Map dataMap;
+  DateTime dateStampToday;
+  Map dataMapLastSevenDays;
+  Map<String, double> countedMealsLastSevenDays = {
+    'none': 0,
+    'vegan': 0,
+    'veggie': 0,
+    'fish': 0,
+    'chicken': 0,
+    'pig': 0,
+    'cow': 0
+  };
+
+  void constructDataMapLastSevenDays() {
+    dataMapLastSevenDays = Map.from(dataMap)
+      ..removeWhere((key, value) =>
+          key.isBefore(dateStampToday.subtract(Duration(days: 6))));
+    print('dataMapLastSevenDays   $dataMapLastSevenDays');
+  }
+
+  void countFoodLastSevenDays() {
+    dataMapLastSevenDays.forEach((key, value) {
+      value.forEach((key, value) {
+        switch (value) {
+          case 'none':
+            {
+              countedMealsLastSevenDays['none']++;
+            }
+            break;
+
+          case 'vegan':
+            {
+              countedMealsLastSevenDays['vegan']++;
+            }
+            break;
+
+          case 'veggie':
+            {
+              countedMealsLastSevenDays['veggie']++;
+            }
+            break;
+
+          case 'fish':
+            {
+              countedMealsLastSevenDays['fish']++;
+            }
+            break;
+
+          case 'chicken':
+            {
+              countedMealsLastSevenDays['chicken']++;
+            }
+            break;
+          case 'pig':
+            {
+              countedMealsLastSevenDays['pig']++;
+            }
+            break;
+          case 'cow':
+            {
+              countedMealsLastSevenDays['cow']++;
+            }
+            break;
+          case '':
+            {}
+            break;
+
+          default:
+            {}
+            break;
+        }
+      });
+    });
+    print('countedMealsLastSevenDays $countedMealsLastSevenDays');
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    constructDataMapLastSevenDays();
+    countFoodLastSevenDays();
+  }
 
   @override
   Widget build(BuildContext context) {
-    return AspectRatio(
-      aspectRatio: 1.3,
-      child: Card(
-        color: Colors.white,
-        child: AspectRatio(
-          aspectRatio: 1,
-          child: PieChart(
-            PieChartData(
-                pieTouchData: PieTouchData(touchCallback: (pieTouchResponse) {
-                  setState(() {
-                    if (pieTouchResponse.touchInput is FlLongPressEnd ||
-                        pieTouchResponse.touchInput is FlPanEnd) {
-                      touchedIndex = -1;
-                    } else {
-                      touchedIndex = pieTouchResponse.touchedSectionIndex;
-                    }
-                  });
-                }),
-                borderData: FlBorderData(
-                  show: false,
-                ),
-                sectionsSpace: 0,
-                centerSpaceRadius: 0,
-                sections: showingSections()),
+    return Column(
+      children: [
+        AspectRatio(
+          aspectRatio: 1.3, //
+          child: Card(
+            color: Colors.white,
+            child: AspectRatio(
+              aspectRatio: 1,
+              child: PieChart(
+                PieChartData(
+                    pieTouchData:
+                        PieTouchData(touchCallback: (pieTouchResponse) {
+                      setState(() {
+                        if (pieTouchResponse.touchInput is FlLongPressEnd ||
+                            pieTouchResponse.touchInput is FlPanEnd) {
+                          touchedIndex = -1;
+                        } else {
+                          touchedIndex = pieTouchResponse.touchedSectionIndex;
+                        }
+                      });
+                    }),
+                    borderData: FlBorderData(
+                      show: false,
+                    ),
+                    sectionsSpace: 0,
+                    centerSpaceRadius: 0,
+                    sections: showingSections(countedMealsLastSevenDays)),
+              ),
+            ),
           ),
         ),
-      ),
+      ],
     );
   }
 
-  List<PieChartSectionData> showingSections() {
+  List<PieChartSectionData> showingSections(countedMealsLastSevenDays) {
     return List.generate(7, (i) {
       final isTouched = i == touchedIndex;
-      final double fontSize = isTouched ? 20 : 16;
-      final double radius = isTouched ? 110 : 100;
-      final double widgetSize = isTouched ? 55 : 40;
+      final double fontSize = isTouched ? 23 : 20;
+      final double radius = isTouched ? 130 : 120;
+      final double widgetSize = isTouched ? 55 : 50;
 
       switch (i) {
         case 0:
           return PieChartSectionData(
             color: Colors.green[200],
-            value: 2,
-            title: '2',
+            value: countedMealsLastSevenDays['vegan'],
+            title: countedMealsLastSevenDays['vegan'].toInt().toString(),
             radius: radius,
             titleStyle: TextStyle(
                 fontSize: fontSize,
@@ -76,8 +165,8 @@ class _ReportScreenWeekState extends State<ReportScreenWeek> {
         case 1:
           return PieChartSectionData(
             color: Colors.green[400],
-            value: 5,
-            title: '5',
+            value: countedMealsLastSevenDays['veggie'],
+            title: countedMealsLastSevenDays['veggie'].toInt().toString(),
             radius: radius,
             titleStyle: TextStyle(
                 fontSize: fontSize,
@@ -93,8 +182,8 @@ class _ReportScreenWeekState extends State<ReportScreenWeek> {
         case 2:
           return PieChartSectionData(
             color: Colors.blueAccent,
-            value: 6,
-            title: '6',
+            value: countedMealsLastSevenDays['fish'],
+            title: countedMealsLastSevenDays['fish'].toInt().toString(),
             radius: radius,
             titleStyle: TextStyle(
                 fontSize: fontSize,
@@ -110,8 +199,8 @@ class _ReportScreenWeekState extends State<ReportScreenWeek> {
         case 3:
           return PieChartSectionData(
             color: Colors.amberAccent,
-            value: 6,
-            title: '6',
+            value: countedMealsLastSevenDays['chicken'],
+            title: countedMealsLastSevenDays['chicken'].toInt().toString(),
             radius: radius,
             titleStyle: TextStyle(
                 fontSize: fontSize,
@@ -127,8 +216,8 @@ class _ReportScreenWeekState extends State<ReportScreenWeek> {
         case 4:
           return PieChartSectionData(
             color: Colors.deepOrangeAccent[200],
-            value: 1,
-            title: '1',
+            value: countedMealsLastSevenDays['pig'],
+            title: countedMealsLastSevenDays['pig'].toInt().toString(),
             radius: radius,
             titleStyle: TextStyle(
                 fontSize: fontSize,
@@ -144,8 +233,8 @@ class _ReportScreenWeekState extends State<ReportScreenWeek> {
         case 5:
           return PieChartSectionData(
             color: Colors.deepPurpleAccent[200],
-            value: 1,
-            title: '1',
+            value: countedMealsLastSevenDays['cow'],
+            title: countedMealsLastSevenDays['cow'].toInt().toString(),
             radius: radius,
             titleStyle: TextStyle(
                 fontSize: fontSize,
@@ -161,8 +250,8 @@ class _ReportScreenWeekState extends State<ReportScreenWeek> {
         case 6:
           return PieChartSectionData(
             color: Colors.blueGrey,
-            value: 2,
-            title: '2',
+            value: countedMealsLastSevenDays['none'],
+            title: countedMealsLastSevenDays['none'].toInt().toString(),
             radius: radius,
             titleStyle: TextStyle(
                 fontSize: fontSize,

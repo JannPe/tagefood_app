@@ -28,7 +28,7 @@ class DayRow extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 2.0),
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   Image.asset(
                     'assets/${dataMap['Breakfast']}.png',
@@ -40,7 +40,7 @@ class DayRow extends StatelessWidget {
                     decoration: BoxDecoration(
                       border: Border.all(
                         color: Colors.greenAccent,
-                        width: 30.0,
+                        width: 25.0,
                       ),
                       borderRadius: BorderRadius.circular(10.0),
                     ),
@@ -55,7 +55,7 @@ class DayRow extends StatelessWidget {
                     decoration: BoxDecoration(
                       border: Border.all(
                         color: Colors.greenAccent,
-                        width: 30.0,
+                        width: 25.0,
                       ),
                       borderRadius: BorderRadius.circular(10.0),
                     ),

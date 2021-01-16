@@ -36,9 +36,9 @@ class _MyHomePageState extends State<MyHomePage> {
   List<String> days = ['Mon', 'Sun', 'Sat', 'Fri', 'Thurs', 'Wed', 'Tue'];
   DateTime dateStampToday;
   void setCurrentDayAndGetDays() {
-    print('setCurrentDayAndGetDays started');
     DateTime now = new DateTime.now();
     dateStampToday = new DateTime(now.year, now.month, now.day);
+    print('dateStampToday in home $dateStampToday');
 
     if (!dataMap.containsKey(dateStampToday)) {
       //update dataMap with key of todays date
@@ -48,7 +48,6 @@ class _MyHomePageState extends State<MyHomePage> {
         'Dinner': '',
       };
     }
-    print('New dataMap $dataMap');
 
     if (now.weekday == 1) {
       //set days List to match to today and correct prior days
@@ -74,6 +73,7 @@ class _MyHomePageState extends State<MyHomePage> {
     setState(() {
       dataMap[dateStampToday][selectedTime] = selectedFood;
       print('141 updated locally for TODAY to ${dataMap[dateStampToday]}');
+      storageManager.setData(dataMap);
     });
   }
 
@@ -198,11 +198,12 @@ class _MyHomePageState extends State<MyHomePage> {
                       ),
                     ), //Food Picker
                   ],
-                ), //Both Pickers
+                ),
+                //Both Pickers
               ],
             ),
           ),
-          ReportScreenWeek(dataMap: dataMap),
+          ReportScreenWeek(dataMap: dataMap, dateStampToday: dateStampToday),
         ],
       ),
       floatingActionButton: FloatingActionButton(
