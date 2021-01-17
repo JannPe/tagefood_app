@@ -78,20 +78,11 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   Map constructDataMapForSpecificSevenDays(int start, int end) {
-    Map dataMapSelectedSevenDays;
-    print('dataMap construct  $dataMap');
-    print('dateStampToday construct  $dateStampToday');
-    dataMap.forEach((key, value) {
-      if (key.isBefore(dateStampToday.subtract(Duration(days: start))) &&
-          key.isAfter(dateStampToday.subtract(Duration(days: end)))) {
-        dataMapSelectedSevenDays[key] = value;
-      }
-    });
+    Map dataMapSelectedSevenDays = Map.from(dataMap);
 
-    // Map dataMapSelectedSevenDays = Map.from(dataMap)
-    //   ..removeWhere((key, value) =>
-    //       key.isBefore(dateStampToday.subtract(Duration(days: end))) &&
-    //       key.isAfter(dateStampToday.subtract(Duration(days: start))));
+    dataMapSelectedSevenDays.removeWhere((key, value) =>
+        key.isBefore(dateStampToday.subtract(Duration(days: start))) ||
+        key.isAfter(dateStampToday.subtract(Duration(days: end))));
 
     print('dataMapSelectedSevenDays construct   $dataMapSelectedSevenDays');
     return dataMapSelectedSevenDays;
@@ -225,7 +216,7 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
           ReportScreen(
               dataMapSpecificSevenDays:
-                  constructDataMapForSpecificSevenDays(0, 1)),
+                  constructDataMapForSpecificSevenDays(6, 0)),
         ],
       ),
       floatingActionButton: FloatingActionButton(
