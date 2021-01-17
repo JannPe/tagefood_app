@@ -6,6 +6,11 @@ class StorageManager {
   String dataMapJSON;
 
   Map<dynamic, dynamic> startingMap = {
+    new DateTime(2021, 1, 16).toString(): {
+      'Breakfast': 'pig',
+      'Lunch': 'fish',
+      'Dinner': 'veggie'
+    },
     new DateTime(2021, 1, 15).toString(): {
       'Breakfast': 'none',
       'Lunch': 'veggie',

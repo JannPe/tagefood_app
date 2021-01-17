@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../widgets/ReportPie.dart';
-import 'dart:math';
 
 class ReportScreen extends StatelessWidget {
   ReportScreen({this.dataMapSpecificSevenDays});
@@ -320,10 +319,19 @@ class ReportScreen extends StatelessWidget {
         ),
         Flexible(
           flex: 3,
-          child: ReportPie(
-            countedFood: countFoodAppearancesTotal(),
-            size: 120.0,
-            badges: true,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              Text(
+                'Total',
+                style: TextStyle(fontSize: 30.0, fontFamily: 'JosefinSans'),
+              ),
+              ReportPie(
+                countedFood: countFoodAppearancesTotal(),
+                size: 120.0,
+                badges: true,
+              ),
+            ],
           ),
         ),
         SizedBox(
@@ -332,19 +340,36 @@ class ReportScreen extends StatelessWidget {
         Flexible(
           flex: 1,
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 70.0),
+            padding: const EdgeInsets.symmetric(horizontal: 20.0),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
+                RotatedBox(
+                  quarterTurns: 3,
+                  child: Text(
+                    'Breakfast',
+                    style: TextStyle(fontSize: 20.0, fontFamily: 'JosefinSans'),
+                  ),
+                ),
                 ReportPie(
                   countedFood: countFoodAppearancesBreakfast(),
-                  size: 80.0,
+                  size: 70.0,
                   badges: false,
+                ),
+                SizedBox(
+                  width: 5.0,
                 ),
                 ReportPie(
                     countedFood: countFoodAppearancesDinner(),
-                    size: 80.0,
+                    size: 70.0,
                     badges: false),
+                RotatedBox(
+                  quarterTurns: 1,
+                  child: Text(
+                    'Dinner',
+                    style: TextStyle(fontSize: 20.0, fontFamily: 'JosefinSans'),
+                  ),
+                ),
               ],
             ),
           ),
@@ -353,8 +378,12 @@ class ReportScreen extends StatelessWidget {
           flex: 2,
           child: ReportPie(
               countedFood: countFoodAppearancesLunch(),
-              size: 80.0,
+              size: 70.0,
               badges: false),
+        ),
+        Text(
+          'Lunch',
+          style: TextStyle(fontSize: 20.0, fontFamily: 'JosefinSans'),
         ),
       ],
     );
