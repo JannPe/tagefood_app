@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../widgets/ReportPie.dart';
 import 'dart:math';
@@ -7,14 +8,26 @@ class ReportScreen extends StatelessWidget {
 
   final Map dataMapSpecificSevenDays;
 
-  DateTime calcFromDate(List<DateTime> dates){
+  String getFromDate() {
+    List dates = dataMapSpecificSevenDays.keys.toList();
     DateTime maxDate = dates[0];
-    dates.forEach((date){
-      if(date.isAfter(maxDate)){
-        maxDate=date;
+    dates.forEach((date) {
+      if (date.isAfter(maxDate)) {
+        maxDate = date;
       }
     });
-    return maxDate;
+    return '${maxDate.day}.${maxDate.month}.${maxDate.year}';
+  }
+
+  String getToDate() {
+    List dates = dataMapSpecificSevenDays.keys.toList();
+    DateTime minDate = dates[0];
+    dates.forEach((date) {
+      if (date.isBefore(minDate)) {
+        minDate = date;
+      }
+    });
+    return '${minDate.day}.${minDate.month}.${minDate.year}';
   }
 
   Map countFoodAppearancesTotal() {
@@ -292,27 +305,57 @@ class ReportScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Text(
-            'Your recent 7 days:',
-            style: TextStyle(
-              fontSize: 25.0,
-              color: Colors.blueGrey,
+        Flexible(
+          flex: 1,
+          child: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Text(
+              'Your Stats: ${getFromDate()} - ${getToDate()}',
+              style: TextStyle(
+                fontSize: 25.0,
+                color: Colors.blueGrey,
+              ),
             ),
           ),
         ),
-        ReportPie(countedFood: countFoodAppearancesTotal()),
-        Column(
-          children: [
-            Container(
-                height: 100.0,
-                width: 100.0,
-                child: ReportPie(countedFood: countFoodAppearancesBreakfast())),
-            ReportPie(countedFood: countFoodAppearancesLunch()),
-            ReportPie(countedFood: countFoodAppearancesDinner()),
-          ],
-        )
+        Flexible(
+          flex: 3,
+          child: ReportPie(
+            countedFood: countFoodAppearancesTotal(),
+            size: 120.0,
+            badges: true,
+          ),
+        ),
+        SizedBox(
+          height: 50.0,
+        ),
+        Flexible(
+          flex: 1,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 70.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                ReportPie(
+                  countedFood: countFoodAppearancesBreakfast(),
+                  size: 80.0,
+                  badges: false,
+                ),
+                ReportPie(
+                    countedFood: countFoodAppearancesDinner(),
+                    size: 80.0,
+                    badges: false),
+              ],
+            ),
+          ),
+        ),
+        Flexible(
+          flex: 2,
+          child: ReportPie(
+              countedFood: countFoodAppearancesLunch(),
+              size: 80.0,
+              badges: false),
+        ),
       ],
     );
   }

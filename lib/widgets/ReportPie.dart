@@ -3,9 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
 
 class ReportPie extends StatefulWidget {
-  ReportPie({this.countedFood});
+  ReportPie({this.countedFood, this.size, this.badges});
 
   Map<String, double> countedFood;
+  double size;
+  bool badges;
 
   @override
   _ReportPieState createState() => _ReportPieState();
@@ -18,47 +20,38 @@ class _ReportPieState extends State<ReportPie> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        AspectRatio(
-          aspectRatio: 1.3, //
-          child: Card(
-            color: Colors.white,
-            child: AspectRatio(
-              aspectRatio: 1,
-              child: PieChart(
-                PieChartData(
-                    pieTouchData:
-                        PieTouchData(touchCallback: (pieTouchResponse) {
-                      setState(() {
-                        if (pieTouchResponse.touchInput is FlLongPressEnd ||
-                            pieTouchResponse.touchInput is FlPanEnd) {
-                          touchedIndex = -1;
-                        } else {
-                          touchedIndex = pieTouchResponse.touchedSectionIndex;
-                        }
-                      });
-                    }),
-                    borderData: FlBorderData(
-                      show: false,
-                    ),
-                    sectionsSpace: 0,
-                    centerSpaceRadius: 0,
-                    sections: showingSections(widget.countedFood)),
-              ),
+    return AspectRatio(
+      aspectRatio: 1,
+      child: PieChart(
+        PieChartData(
+            pieTouchData: PieTouchData(touchCallback: (pieTouchResponse) {
+              setState(() {
+                if (pieTouchResponse.touchInput is FlLongPressEnd ||
+                    pieTouchResponse.touchInput is FlPanEnd) {
+                  touchedIndex = -1;
+                } else {
+                  touchedIndex = pieTouchResponse.touchedSectionIndex;
+                }
+              });
+            }),
+            borderData: FlBorderData(
+              show: false,
             ),
-          ),
-        ),
-      ],
+            sectionsSpace: 0,
+            centerSpaceRadius: 0,
+            sections: showingSections(widget.countedFood)),
+      ),
     );
   }
 
   List<PieChartSectionData> showingSections(countedFood) {
     return List.generate(7, (i) {
       final isTouched = i == touchedIndex;
-      final double fontSize = isTouched ? 23 : 20;
-      final double radius = isTouched ? 130 : 120;
-      final double widgetSize = isTouched ? 55 : 50;
+      final double fontSize =
+          isTouched ? widget.size * 0.25 : widget.size * 0.2;
+      final double radius = isTouched ? widget.size * 1.1 : widget.size;
+      final double widgetSize =
+          isTouched ? widget.size * 0.5 * 1.1 : widget.size * 0.5;
 
       switch (i) {
         case 0:
@@ -71,11 +64,17 @@ class _ReportPieState extends State<ReportPie> {
                 fontSize: fontSize,
                 fontWeight: FontWeight.bold,
                 color: const Color(0xffffffff)),
-            badgeWidget: _Badge(
-              'assets/vegan.png',
-              size: widgetSize,
-              borderColor: Colors.green[200],
-            ),
+            badgeWidget: widget.badges
+                ? _Badge(
+                    'assets/vegan.png',
+                    size: widgetSize,
+                    borderColor: Colors.green[200],
+                  )
+                : _Badge(
+                    'assets/.png',
+                    size: 0.0,
+                    borderColor: Colors.green[200],
+                  ),
             badgePositionPercentageOffset: .98,
           );
         case 1:
@@ -88,11 +87,17 @@ class _ReportPieState extends State<ReportPie> {
                 fontSize: fontSize,
                 fontWeight: FontWeight.bold,
                 color: const Color(0xffffffff)),
-            badgeWidget: _Badge(
-              'assets/veggie.png',
-              size: widgetSize,
-              borderColor: Colors.green[400],
-            ),
+            badgeWidget: widget.badges
+                ? _Badge(
+                    'assets/veggie.png',
+                    size: widgetSize,
+                    borderColor: Colors.green[400],
+                  )
+                : _Badge(
+                    'assets/.png',
+                    size: 0.0,
+                    borderColor: Colors.green[400],
+                  ),
             badgePositionPercentageOffset: .98,
           );
         case 2:
@@ -105,11 +110,17 @@ class _ReportPieState extends State<ReportPie> {
                 fontSize: fontSize,
                 fontWeight: FontWeight.bold,
                 color: const Color(0xffffffff)),
-            badgeWidget: _Badge(
-              'assets/fish.png',
-              size: widgetSize,
-              borderColor: Colors.blueAccent,
-            ),
+            badgeWidget: widget.badges
+                ? _Badge(
+                    'assets/fish.png',
+                    size: widgetSize,
+                    borderColor: Colors.blueAccent,
+                  )
+                : _Badge(
+                    'assets/.png',
+                    size: 0.0,
+                    borderColor: Colors.blueAccent,
+                  ),
             badgePositionPercentageOffset: .98,
           );
         case 3:
@@ -122,11 +133,17 @@ class _ReportPieState extends State<ReportPie> {
                 fontSize: fontSize,
                 fontWeight: FontWeight.bold,
                 color: const Color(0xffffffff)),
-            badgeWidget: _Badge(
-              'assets/chicken.png',
-              size: widgetSize,
-              borderColor: Colors.amberAccent,
-            ),
+            badgeWidget: widget.badges
+                ? _Badge(
+                    'assets/chicken.png',
+                    size: widgetSize,
+                    borderColor: Colors.amberAccent,
+                  )
+                : _Badge(
+                    'assets/.png',
+                    size: 0.0,
+                    borderColor: Colors.amberAccent,
+                  ),
             badgePositionPercentageOffset: .98,
           );
         case 4:
@@ -139,11 +156,17 @@ class _ReportPieState extends State<ReportPie> {
                 fontSize: fontSize,
                 fontWeight: FontWeight.bold,
                 color: const Color(0xffffffff)),
-            badgeWidget: _Badge(
-              'assets/pig.png',
-              size: widgetSize,
-              borderColor: Colors.deepOrangeAccent[200],
-            ),
+            badgeWidget: widget.badges
+                ? _Badge(
+                    'assets/pig.png',
+                    size: widgetSize,
+                    borderColor: Colors.deepOrangeAccent[200],
+                  )
+                : _Badge(
+                    'assets/.png',
+                    size: 0.0,
+                    borderColor: Colors.deepOrangeAccent[200],
+                  ),
             badgePositionPercentageOffset: .98,
           );
         case 5:
@@ -156,11 +179,17 @@ class _ReportPieState extends State<ReportPie> {
                 fontSize: fontSize,
                 fontWeight: FontWeight.bold,
                 color: const Color(0xffffffff)),
-            badgeWidget: _Badge(
-              'assets/cow.png',
-              size: widgetSize,
-              borderColor: Colors.deepPurpleAccent,
-            ),
+            badgeWidget: widget.badges
+                ? _Badge(
+                    'assets/cow.png',
+                    size: widgetSize,
+                    borderColor: Colors.deepPurpleAccent,
+                  )
+                : _Badge(
+                    'assets/.png',
+                    size: 0.0,
+                    borderColor: Colors.deepPurpleAccent,
+                  ),
             badgePositionPercentageOffset: .98,
           );
         case 6:
@@ -173,11 +202,17 @@ class _ReportPieState extends State<ReportPie> {
                 fontSize: fontSize,
                 fontWeight: FontWeight.bold,
                 color: const Color(0xffffffff)),
-            badgeWidget: _Badge(
-              'assets/none.png',
-              size: widgetSize,
-              borderColor: Colors.blueGrey,
-            ),
+            badgeWidget: widget.badges
+                ? _Badge(
+                    'assets/none.png',
+                    size: widgetSize,
+                    borderColor: Colors.blueGrey,
+                  )
+                : _Badge(
+                    'assets/.png',
+                    size: 0.0,
+                    borderColor: Colors.blueGrey,
+                  ),
             badgePositionPercentageOffset: .98,
           );
         default:
