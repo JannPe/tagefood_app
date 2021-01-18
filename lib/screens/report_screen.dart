@@ -313,7 +313,7 @@ class ReportScreen extends StatelessWidget {
         Flexible(
           flex: 1,
           child: Padding(
-            padding: const EdgeInsets.all(16.0),
+            padding: const EdgeInsets.all(20.0),
             child: Text(
               'Your Stats: ${getFromDate()} - ${getToDate()}',
               style: TextStyle(
@@ -330,7 +330,7 @@ class ReportScreen extends StatelessWidget {
             children: [
               Text(
                 'Total',
-                style: TextStyle(fontSize: 30.0, fontFamily: 'JosefinSans'),
+                style: TextStyle(fontSize: 30.0),
               ),
               ReportPie(
                 countedFood: countFoodAppearancesTotal(),
@@ -354,7 +354,7 @@ class ReportScreen extends StatelessWidget {
                   quarterTurns: 3,
                   child: Text(
                     'Breakfast',
-                    style: TextStyle(fontSize: 15.0, fontFamily: 'JosefinSans'),
+                    style: TextStyle(fontSize: 15.0),
                   ),
                 ),
                 ReportPie(
@@ -373,7 +373,7 @@ class ReportScreen extends StatelessWidget {
                   quarterTurns: 1,
                   child: Text(
                     'Dinner',
-                    style: TextStyle(fontSize: 15.0, fontFamily: 'JosefinSans'),
+                    style: TextStyle(fontSize: 15.0),
                   ),
                 ),
               ],
@@ -389,7 +389,7 @@ class ReportScreen extends StatelessWidget {
         ),
         Text(
           'Lunch',
-          style: TextStyle(fontSize: 15.0, fontFamily: 'JosefinSans'),
+          style: TextStyle(fontSize: 15.0),
         ),
       ],
     );

@@ -6,9 +6,8 @@ import '../widgets/day_row.dart';
 import '../services/storage_manager.dart';
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title, this.dataMap}) : super(key: key);
+  MyHomePage({Key key, this.dataMap}) : super(key: key);
 
-  final String title;
   final Map dataMap;
 
   @override
@@ -243,11 +242,10 @@ class _MyHomePageState extends State<MyHomePage> {
                         },
                         children: getFoodImages(20.0),
                       ),
-                    ),
+                    ), //FoodPicker
                   ],
                 ),
                 Padding(
-                  //button
                   padding: const EdgeInsets.fromLTRB(0, 0, 15, 15),
                   child: Align(
                     alignment: Alignment.bottomRight,
@@ -266,7 +264,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       ),
                     ),
                   ),
-                ),
+                ), //button
               ],
             ),
           ),

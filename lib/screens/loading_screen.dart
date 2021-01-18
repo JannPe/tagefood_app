@@ -32,7 +32,7 @@ class _LoadingScreenState extends State<LoadingScreen> {
         ),
         home: DefaultTabController(
           length: 2,
-          child: MyHomePage(title: 'TageFood', dataMap: dataMap),
+          child: MyHomePage(dataMap: dataMap),
         ),
       );
     }));
@@ -41,6 +41,7 @@ class _LoadingScreenState extends State<LoadingScreen> {
   @override
   Widget build(BuildContext context) {
     return Container(
+      //Spinner during fetching the data
       color: Colors.white,
       child: Center(
         child: SpinKitFadingCube(

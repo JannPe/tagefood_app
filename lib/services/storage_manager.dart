@@ -5,7 +5,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 class StorageManager {
   String dataMapJSON;
 
-  Map<dynamic, dynamic> startingMap = {
+  Map<String, Map> startingMap = {
     new DateTime(2021, 1, 17).toString(): {
       'Breakfast': 'veggie',
       'Lunch': 'none',
@@ -91,7 +91,7 @@ class StorageManager {
       'Lunch': 'pig',
       'Dinner': 'cow'
     },
-  };
+  }; //mock Data to show the app
   Map<DateTime, dynamic> dataMapJSONDecodedParsed;
 
   Future getData() async {

@@ -5,9 +5,9 @@ import 'package:fl_chart/fl_chart.dart';
 class ReportPie extends StatefulWidget {
   ReportPie({this.countedFood, this.size, this.badges});
 
-  Map<String, double> countedFood;
-  double size;
-  bool badges;
+  final Map<String, double> countedFood;
+  final double size;
+  final bool badges;
 
   @override
   _ReportPieState createState() => _ReportPieState();
