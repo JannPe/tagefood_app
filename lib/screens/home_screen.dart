@@ -123,8 +123,7 @@ class _MyHomePageState extends State<MyHomePage> {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 Padding(
-                  padding: const EdgeInsets.symmetric(
-                      vertical: 10.0, horizontal: 20.0),
+                  padding: const EdgeInsets.fromLTRB(10, 10, 10, 5),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
@@ -207,23 +206,45 @@ class _MyHomePageState extends State<MyHomePage> {
                         },
                         children: getFoodImages(20.0),
                       ),
-                    ), //Food Picker
+                    ),
                   ],
                 ),
-                //Both Pickers
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(0, 0, 15, 15),
+                  child: Align(
+                    alignment: Alignment.bottomRight,
+                    child: Ink(
+                      decoration: const ShapeDecoration(
+                        color: Colors.lightGreen,
+                        shape: CircleBorder(),
+                      ),
+                      child: IconButton(
+                        iconSize: 40.0,
+                        icon: Icon(Icons.add),
+                        color: Colors.white,
+                        onPressed: () {
+                          _submit();
+                        },
+                      ),
+                    ),
+                  ),
+                ),
               ],
             ),
           ),
           ReportScreen(
               dataMapSpecificSevenDays:
                   constructDataMapForSpecificSevenDays(6, 0)),
+          ReportScreen(
+              dataMapSpecificSevenDays:
+                  constructDataMapForSpecificSevenDays(12, 6)),
         ],
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _submit,
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+      // floatingActionButton: FloatingActionButton(
+      //   onPressed: _submit,
+      //   tooltip: 'Increment',
+      //   child: Icon(Icons.add),
+      // ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }
