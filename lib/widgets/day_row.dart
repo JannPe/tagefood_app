@@ -24,7 +24,7 @@ class DayRow extends StatelessWidget {
                       fontSize: 30.0,
                       color: Colors.blueGrey,
                       fontFamily: 'Kalam'),
-            ),
+            ), //Day
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 2.0),
               child: Row(
@@ -34,7 +34,7 @@ class DayRow extends StatelessWidget {
                     'assets/${dataMap['Breakfast']}.png',
                     width: 50.0,
                     fit: BoxFit.cover,
-                  ),
+                  ), //Breakfast
                   Container(
                     height: 5.0,
                     decoration: BoxDecoration(
@@ -44,12 +44,12 @@ class DayRow extends StatelessWidget {
                       ),
                       borderRadius: BorderRadius.circular(10.0),
                     ),
-                  ),
+                  ), //green line between Icons
                   Image.asset(
                     'assets/${dataMap['Lunch']}.png',
                     width: 50.0,
                     fit: BoxFit.cover,
-                  ),
+                  ), //Lunch
                   Container(
                     height: 5.0,
                     decoration: BoxDecoration(
@@ -59,12 +59,12 @@ class DayRow extends StatelessWidget {
                       ),
                       borderRadius: BorderRadius.circular(10.0),
                     ),
-                  ),
+                  ), // green line between Icons
                   Image.asset(
                     'assets/${dataMap['Dinner']}.png',
                     width: 50.0,
                     fit: BoxFit.cover,
-                  ),
+                  ), //Dinner
                 ],
               ),
             ),
@@ -74,7 +74,7 @@ class DayRow extends StatelessWidget {
           width: double.infinity,
           height: 2.0,
           color: Colors.grey[200],
-        ),
+        ), //grey Spacing Line in between Rows
       ],
     );
   }
