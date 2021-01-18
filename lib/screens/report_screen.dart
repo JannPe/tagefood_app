@@ -167,7 +167,7 @@ class ReportScreen extends StatelessWidget {
   }
 
   Map countFoodAppearancesLunch() {
-    Map<String, double> countedFoodLastSevenDays = {
+    Map<String, double> countedFoodLastSevenDaysBreakfast = {
       'none': 0,
       'vegan': 0,
       'veggie': 0,
@@ -179,62 +179,65 @@ class ReportScreen extends StatelessWidget {
 
     dataMapSpecificSevenDays.forEach((key, value) {
       value.forEach((key, value) {
-        switch (value) {
-          case 'none':
-            {
-              countedFoodLastSevenDays['none']++;
-            }
-            break;
+        if (key == 'Lunch') {
+          switch (value) {
+            case 'none':
+              {
+                countedFoodLastSevenDaysBreakfast['none']++;
+              }
+              break;
 
-          case 'vegan':
-            {
-              countedFoodLastSevenDays['vegan']++;
-            }
-            break;
+            case 'vegan':
+              {
+                countedFoodLastSevenDaysBreakfast['vegan']++;
+              }
+              break;
 
-          case 'veggie':
-            {
-              countedFoodLastSevenDays['veggie']++;
-            }
-            break;
+            case 'veggie':
+              {
+                countedFoodLastSevenDaysBreakfast['veggie']++;
+              }
+              break;
 
-          case 'fish':
-            {
-              countedFoodLastSevenDays['fish']++;
-            }
-            break;
+            case 'fish':
+              {
+                countedFoodLastSevenDaysBreakfast['fish']++;
+              }
+              break;
 
-          case 'chicken':
-            {
-              countedFoodLastSevenDays['chicken']++;
-            }
-            break;
-          case 'pig':
-            {
-              countedFoodLastSevenDays['pig']++;
-            }
-            break;
-          case 'cow':
-            {
-              countedFoodLastSevenDays['cow']++;
-            }
-            break;
-          case '':
-            {}
-            break;
+            case 'chicken':
+              {
+                countedFoodLastSevenDaysBreakfast['chicken']++;
+              }
+              break;
+            case 'pig':
+              {
+                countedFoodLastSevenDaysBreakfast['pig']++;
+              }
+              break;
+            case 'cow':
+              {
+                countedFoodLastSevenDaysBreakfast['cow']++;
+              }
+              break;
+            case '':
+              {}
+              break;
 
-          default:
-            {}
-            break;
+            default:
+              {}
+              break;
+          }
         }
       });
     });
-    print('countedMealsLastSevenDays $countedFoodLastSevenDays');
-    return countedFoodLastSevenDays;
+    print(
+        'countedMealsLastSevenDaysBreakfast $countedFoodLastSevenDaysBreakfast');
+    return countedFoodLastSevenDaysBreakfast;
   }
 
   Map countFoodAppearancesDinner() {
-    Map<String, double> countedFoodLastSevenDays = {
+    Map<String, double> countedFoodLastSevenDaysBreakfast = {
       'none': 0,
       'vegan': 0,
       'veggie': 0,
@@ -246,58 +249,61 @@ class ReportScreen extends StatelessWidget {
 
     dataMapSpecificSevenDays.forEach((key, value) {
       value.forEach((key, value) {
-        switch (value) {
-          case 'none':
-            {
-              countedFoodLastSevenDays['none']++;
-            }
-            break;
+        if (key == 'Dinner') {
+          switch (value) {
+            case 'none':
+              {
+                countedFoodLastSevenDaysBreakfast['none']++;
+              }
+              break;
 
-          case 'vegan':
-            {
-              countedFoodLastSevenDays['vegan']++;
-            }
-            break;
+            case 'vegan':
+              {
+                countedFoodLastSevenDaysBreakfast['vegan']++;
+              }
+              break;
 
-          case 'veggie':
-            {
-              countedFoodLastSevenDays['veggie']++;
-            }
-            break;
+            case 'veggie':
+              {
+                countedFoodLastSevenDaysBreakfast['veggie']++;
+              }
+              break;
 
-          case 'fish':
-            {
-              countedFoodLastSevenDays['fish']++;
-            }
-            break;
+            case 'fish':
+              {
+                countedFoodLastSevenDaysBreakfast['fish']++;
+              }
+              break;
 
-          case 'chicken':
-            {
-              countedFoodLastSevenDays['chicken']++;
-            }
-            break;
-          case 'pig':
-            {
-              countedFoodLastSevenDays['pig']++;
-            }
-            break;
-          case 'cow':
-            {
-              countedFoodLastSevenDays['cow']++;
-            }
-            break;
-          case '':
-            {}
-            break;
+            case 'chicken':
+              {
+                countedFoodLastSevenDaysBreakfast['chicken']++;
+              }
+              break;
+            case 'pig':
+              {
+                countedFoodLastSevenDaysBreakfast['pig']++;
+              }
+              break;
+            case 'cow':
+              {
+                countedFoodLastSevenDaysBreakfast['cow']++;
+              }
+              break;
+            case '':
+              {}
+              break;
 
-          default:
-            {}
-            break;
+            default:
+              {}
+              break;
+          }
         }
       });
     });
-    print('countedMealsLastSevenDays $countedFoodLastSevenDays');
-    return countedFoodLastSevenDays;
+    print(
+        'countedMealsLastSevenDaysBreakfast $countedFoodLastSevenDaysBreakfast');
+    return countedFoodLastSevenDaysBreakfast;
   }
 
   @override
@@ -311,7 +317,7 @@ class ReportScreen extends StatelessWidget {
             child: Text(
               'Your Stats: ${getFromDate()} - ${getToDate()}',
               style: TextStyle(
-                fontSize: 25.0,
+                fontSize: 20.0,
                 color: Colors.blueGrey,
               ),
             ),
@@ -348,7 +354,7 @@ class ReportScreen extends StatelessWidget {
                   quarterTurns: 3,
                   child: Text(
                     'Breakfast',
-                    style: TextStyle(fontSize: 20.0, fontFamily: 'JosefinSans'),
+                    style: TextStyle(fontSize: 15.0, fontFamily: 'JosefinSans'),
                   ),
                 ),
                 ReportPie(
@@ -367,7 +373,7 @@ class ReportScreen extends StatelessWidget {
                   quarterTurns: 1,
                   child: Text(
                     'Dinner',
-                    style: TextStyle(fontSize: 20.0, fontFamily: 'JosefinSans'),
+                    style: TextStyle(fontSize: 15.0, fontFamily: 'JosefinSans'),
                   ),
                 ),
               ],
@@ -383,7 +389,7 @@ class ReportScreen extends StatelessWidget {
         ),
         Text(
           'Lunch',
-          style: TextStyle(fontSize: 20.0, fontFamily: 'JosefinSans'),
+          style: TextStyle(fontSize: 15.0, fontFamily: 'JosefinSans'),
         ),
       ],
     );
