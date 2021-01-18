@@ -24,7 +24,12 @@ class _LoadingScreenState extends State<LoadingScreen> {
     dataMap = storageManager.dataMapJSONDecodedParsed;
 
     Navigator.push(context, MaterialPageRoute(builder: (context) {
-      return MyHomePage(title: 'TageFood', dataMap: dataMap);
+      return MaterialApp(
+        home: DefaultTabController(
+          length: 2,
+          child: MyHomePage(title: 'TageFood', dataMap: dataMap),
+        ),
+      );
     }));
   }
 

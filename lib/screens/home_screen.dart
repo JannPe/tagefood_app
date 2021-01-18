@@ -109,14 +109,21 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        automaticallyImplyLeading: false,
-        title: Text(
-          widget.title,
-          style: TextStyle(fontFamily: 'Pacifico'),
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(50.0),
+        child: AppBar(
+          backgroundColor: Colors.green,
+          bottom: TabBar(
+            indicatorColor: Colors.white,
+            tabs: [
+              Tab(text: 'Home'),
+              Tab(text: 'Reports'),
+            ],
+          ),
+          automaticallyImplyLeading: false,
         ),
       ),
-      body: PageView(
+      body: TabBarView(
         children: [
           SafeArea(
             child: Column(
@@ -232,12 +239,17 @@ class _MyHomePageState extends State<MyHomePage> {
               ],
             ),
           ),
-          ReportScreen(
-              dataMapSpecificSevenDays:
-                  constructDataMapForSpecificSevenDays(6, 0)),
-          ReportScreen(
-              dataMapSpecificSevenDays:
-                  constructDataMapForSpecificSevenDays(12, 6)),
+          PageView(
+            scrollDirection: Axis.vertical,
+            children: [
+              ReportScreen(
+                  dataMapSpecificSevenDays:
+                      constructDataMapForSpecificSevenDays(6, 0)),
+              ReportScreen(
+                  dataMapSpecificSevenDays:
+                      constructDataMapForSpecificSevenDays(12, 6)),
+            ],
+          )
         ],
       ),
       // floatingActionButton: FloatingActionButton(
