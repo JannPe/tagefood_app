@@ -25,6 +25,11 @@ class _LoadingScreenState extends State<LoadingScreen> {
 
     Navigator.push(context, MaterialPageRoute(builder: (context) {
       return MaterialApp(
+        theme: ThemeData(
+          primarySwatch: Colors.green,
+          fontFamily: 'JosefinSans',
+          visualDensity: VisualDensity.adaptivePlatformDensity,
+        ),
         home: DefaultTabController(
           length: 2,
           child: MyHomePage(title: 'TageFood', dataMap: dataMap),

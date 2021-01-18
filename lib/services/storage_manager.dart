@@ -6,6 +6,11 @@ class StorageManager {
   String dataMapJSON;
 
   Map<dynamic, dynamic> startingMap = {
+    new DateTime(2021, 1, 17).toString(): {
+      'Breakfast': 'veggie',
+      'Lunch': 'none',
+      'Dinner': 'cow'
+    },
     new DateTime(2021, 1, 16).toString(): {
       'Breakfast': 'pig',
       'Lunch': 'fish',
@@ -42,6 +47,46 @@ class StorageManager {
       'Dinner': 'fish'
     },
     new DateTime(2021, 1, 9).toString(): {
+      'Breakfast': 'vegan',
+      'Lunch': 'pig',
+      'Dinner': 'cow'
+    },
+    new DateTime(2021, 1, 8).toString(): {
+      'Breakfast': 'vegan',
+      'Lunch': 'pig',
+      'Dinner': 'cow'
+    },
+    new DateTime(2021, 1, 7).toString(): {
+      'Breakfast': 'vegan',
+      'Lunch': 'pig',
+      'Dinner': 'cow'
+    },
+    new DateTime(2021, 1, 6).toString(): {
+      'Breakfast': 'vegan',
+      'Lunch': 'pig',
+      'Dinner': 'cow'
+    },
+    new DateTime(2021, 1, 5).toString(): {
+      'Breakfast': 'vegan',
+      'Lunch': 'pig',
+      'Dinner': 'cow'
+    },
+    new DateTime(2021, 1, 4).toString(): {
+      'Breakfast': 'vegan',
+      'Lunch': 'pig',
+      'Dinner': 'cow'
+    },
+    new DateTime(2021, 1, 3).toString(): {
+      'Breakfast': 'vegan',
+      'Lunch': 'pig',
+      'Dinner': 'cow'
+    },
+    new DateTime(2021, 1, 2).toString(): {
+      'Breakfast': 'vegan',
+      'Lunch': 'pig',
+      'Dinner': 'cow'
+    },
+    new DateTime(2021, 1, 1).toString(): {
       'Breakfast': 'vegan',
       'Lunch': 'pig',
       'Dinner': 'cow'

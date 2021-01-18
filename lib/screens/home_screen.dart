@@ -72,9 +72,20 @@ class _MyHomePageState extends State<MyHomePage> {
   void _submit() {
     setState(() {
       dataMap[dateStampToday][selectedTime] = selectedFood;
-      print('141 updated locally for TODAY to ${dataMap[dateStampToday]}');
+      //print('updated locally for TODAY to ${dataMap[dateStampToday]}');
       storageManager.setData(dataMap);
     });
+  }
+
+  List<FoodImage> getFoodImages(double suppliedHeight) {
+    List<FoodImage> foodImages = [];
+    food.forEach((foodItem) {
+      foodImages.add(FoodImage(
+        meal: foodItem,
+        height: suppliedHeight,
+      ));
+    });
+    return foodImages;
   }
 
   Map constructDataMapForSpecificSevenDays(int start, int end) {
@@ -88,22 +99,41 @@ class _MyHomePageState extends State<MyHomePage> {
     return dataMapSelectedSevenDays;
   }
 
+  List<Widget> getRecordScreens() {
+    List<Widget> recordScreens = [];
+
+    DateTime maxDate = dateStampToday;
+
+    List dates = dataMap.keys.toList();
+    DateTime minDate = dates[0];
+    dates.forEach((date) {
+      if (date.isBefore(minDate)) {
+        minDate = date;
+      }
+    });
+
+    int daysBetweenMinAndMax = maxDate.difference(minDate).inDays;
+
+    double sevenDayIntervalsBetweenMinAndMax = daysBetweenMinAndMax / 7;
+
+    int start = 6;
+    int end = 0;
+
+    for (var i = 0; i < sevenDayIntervalsBetweenMinAndMax.ceil(); i++) {
+      recordScreens.add(ReportScreen(
+          dataMapSpecificSevenDays:
+              constructDataMapForSpecificSevenDays(start, end)));
+      start += 7;
+      end += 7;
+    }
+    return recordScreens;
+  }
+
   @override
   void initState() {
     super.initState();
     setCurrentDayAndGetDays();
     setState(() {});
-  }
-
-  List<FoodImage> getFoodImages(double suppliedHeight) {
-    List<FoodImage> foodImages = [];
-    food.forEach((foodItem) {
-      foodImages.add(FoodImage(
-        meal: foodItem,
-        height: suppliedHeight,
-      ));
-    });
-    return foodImages;
   }
 
   @override
@@ -217,6 +247,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   ],
                 ),
                 Padding(
+                  //button
                   padding: const EdgeInsets.fromLTRB(0, 0, 15, 15),
                   child: Align(
                     alignment: Alignment.bottomRight,
@@ -241,22 +272,10 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
           PageView(
             scrollDirection: Axis.vertical,
-            children: [
-              ReportScreen(
-                  dataMapSpecificSevenDays:
-                      constructDataMapForSpecificSevenDays(6, 0)),
-              ReportScreen(
-                  dataMapSpecificSevenDays:
-                      constructDataMapForSpecificSevenDays(12, 6)),
-            ],
-          )
+            children: getRecordScreens(),
+          ),
         ],
       ),
-      // floatingActionButton: FloatingActionButton(
-      //   onPressed: _submit,
-      //   tooltip: 'Increment',
-      //   child: Icon(Icons.add),
-      // ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }
