@@ -109,60 +109,11 @@ class ReportScreen extends StatelessWidget {
 
     dataMapSpecificSevenDays.forEach((key, value) {
       value.forEach((key, value) {
-        if (key == 'Breakfast') {
-          switch (value) {
-            case 'none':
-              {
-                countedFoodLastSevenDaysBreakfast['none']++;
-              }
-              break;
-
-            case 'vegan':
-              {
-                countedFoodLastSevenDaysBreakfast['vegan']++;
-              }
-              break;
-
-            case 'veggie':
-              {
-                countedFoodLastSevenDaysBreakfast['veggie']++;
-              }
-              break;
-
-            case 'fish':
-              {
-                countedFoodLastSevenDaysBreakfast['fish']++;
-              }
-              break;
-
-            case 'chicken':
-              {
-                countedFoodLastSevenDaysBreakfast['chicken']++;
-              }
-              break;
-            case 'pig':
-              {
-                countedFoodLastSevenDaysBreakfast['pig']++;
-              }
-              break;
-            case 'cow':
-              {
-                countedFoodLastSevenDaysBreakfast['cow']++;
-              }
-              break;
-            case '':
-              {}
-              break;
-
-            default:
-              {}
-              break;
-          }
+        if (key == 'Breakfast' && value != '') {
+          countedFoodLastSevenDaysBreakfast[value]++;
         }
       });
     });
-    print(
-        'countedMealsLastSevenDaysBreakfast $countedFoodLastSevenDaysBreakfast');
     return countedFoodLastSevenDaysBreakfast;
   }
 
@@ -179,60 +130,11 @@ class ReportScreen extends StatelessWidget {
 
     dataMapSpecificSevenDays.forEach((key, value) {
       value.forEach((key, value) {
-        if (key == 'Lunch') {
-          switch (value) {
-            case 'none':
-              {
-                countedFoodLastSevenDaysBreakfast['none']++;
-              }
-              break;
-
-            case 'vegan':
-              {
-                countedFoodLastSevenDaysBreakfast['vegan']++;
-              }
-              break;
-
-            case 'veggie':
-              {
-                countedFoodLastSevenDaysBreakfast['veggie']++;
-              }
-              break;
-
-            case 'fish':
-              {
-                countedFoodLastSevenDaysBreakfast['fish']++;
-              }
-              break;
-
-            case 'chicken':
-              {
-                countedFoodLastSevenDaysBreakfast['chicken']++;
-              }
-              break;
-            case 'pig':
-              {
-                countedFoodLastSevenDaysBreakfast['pig']++;
-              }
-              break;
-            case 'cow':
-              {
-                countedFoodLastSevenDaysBreakfast['cow']++;
-              }
-              break;
-            case '':
-              {}
-              break;
-
-            default:
-              {}
-              break;
-          }
+        if (key == 'Lunch' && value != '') {
+          countedFoodLastSevenDaysBreakfast[value]++;
         }
       });
     });
-    print(
-        'countedMealsLastSevenDaysBreakfast $countedFoodLastSevenDaysBreakfast');
     return countedFoodLastSevenDaysBreakfast;
   }
 
@@ -249,60 +151,11 @@ class ReportScreen extends StatelessWidget {
 
     dataMapSpecificSevenDays.forEach((key, value) {
       value.forEach((key, value) {
-        if (key == 'Dinner') {
-          switch (value) {
-            case 'none':
-              {
-                countedFoodLastSevenDaysBreakfast['none']++;
-              }
-              break;
-
-            case 'vegan':
-              {
-                countedFoodLastSevenDaysBreakfast['vegan']++;
-              }
-              break;
-
-            case 'veggie':
-              {
-                countedFoodLastSevenDaysBreakfast['veggie']++;
-              }
-              break;
-
-            case 'fish':
-              {
-                countedFoodLastSevenDaysBreakfast['fish']++;
-              }
-              break;
-
-            case 'chicken':
-              {
-                countedFoodLastSevenDaysBreakfast['chicken']++;
-              }
-              break;
-            case 'pig':
-              {
-                countedFoodLastSevenDaysBreakfast['pig']++;
-              }
-              break;
-            case 'cow':
-              {
-                countedFoodLastSevenDaysBreakfast['cow']++;
-              }
-              break;
-            case '':
-              {}
-              break;
-
-            default:
-              {}
-              break;
-          }
+        if (key == 'Dinner' && value != '') {
+          countedFoodLastSevenDaysBreakfast[value]++;
         }
       });
     });
-    print(
-        'countedMealsLastSevenDaysBreakfast $countedFoodLastSevenDaysBreakfast');
     return countedFoodLastSevenDaysBreakfast;
   }
 
