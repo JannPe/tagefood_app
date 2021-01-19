@@ -98,51 +98,47 @@ class _MyHomePageState extends State<MyHomePage> {
     return dataMapSelectedSevenDays;
   }
 
-  List<Widget> getRecordScreensSevenDays() {
-    List<Widget> recordScreens = [];
+  DateTime minDate;
 
-    DateTime maxDate = dateStampToday;
-
+  void calculateMinDate() {
     List dates = dataMap.keys.toList();
-    DateTime minDate = dates[0];
+    minDate = dates[0];
     dates.forEach((date) {
       if (date.isBefore(minDate)) {
         minDate = date;
       }
     });
+  }
+
+  List<Widget> getRecordScreens(int suppliedStart, int suppliedEnd) {
+    List<Widget> recordScreens = [];
+
+    DateTime maxDate = dateStampToday;
 
     int daysBetweenMinAndMax = maxDate.difference(minDate).inDays;
 
-    double sevenDayIntervalsBetweenMinAndMax = daysBetweenMinAndMax / 7;
+    double daysIntervalsBetweenMinAndMax =
+        daysBetweenMinAndMax / suppliedStart + 1;
 
-    int start = 6;
-    int end = 0;
+    print('daysIntervalsBetweenMinAndMax $daysIntervalsBetweenMinAndMax');
 
-    for (var i = 0; i < sevenDayIntervalsBetweenMinAndMax.ceil(); i++) {
+    int start = suppliedStart;
+    int end = suppliedEnd;
+
+    for (var i = 0; i < daysIntervalsBetweenMinAndMax.ceil() - 1; i++) {
       recordScreens.add(ReportScreen(
           dataMapSpecificSevenDays:
               constructDataMapForSpecificSevenDays(start, end)));
-      start += 7;
-      end += 7;
+      start += suppliedStart + 1;
+      end += suppliedStart + 1;
     }
     return recordScreens;
   }
 
-  // List<Widget> getRecordScreensMonths() {
-  //   List<Widget> recordScreens = [];
-  //
-  //   var monthsDataMap = {};
-  //
-  //   int currentMonth = dateStampToday.month;
-  //
-  //   dataMap.
-  //
-  //   return recordScreens;
-  // }
-
   @override
   void initState() {
     super.initState();
+    calculateMinDate();
     setCurrentDayAndGetDays();
     setState(() {});
   }
@@ -159,7 +155,7 @@ class _MyHomePageState extends State<MyHomePage> {
             tabs: [
               Tab(text: 'Home'),
               Tab(text: '7 Days'),
-              Tab(text: 'Months'),
+              Tab(text: '30 Days'),
             ],
           ),
           automaticallyImplyLeading: false,
@@ -283,11 +279,11 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
           PageView(
             scrollDirection: Axis.vertical,
-            children: getRecordScreensSevenDays(),
+            children: getRecordScreens(6, 0),
           ),
           PageView(
             scrollDirection: Axis.vertical,
-            children: getRecordScreensSevenDays(),
+            children: getRecordScreens(30, 0),
           ),
         ],
       ),
