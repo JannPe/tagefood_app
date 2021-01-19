@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../widgets/ReportPie.dart';
+import 'package:toggle_switch/toggle_switch.dart';
 
 class ReportScreen extends StatelessWidget {
   ReportScreen({this.dataMapSpecificSevenDays});
@@ -30,7 +31,7 @@ class ReportScreen extends StatelessWidget {
   }
 
   Map countFoodAppearancesTotal() {
-    Map<String, double> countedFoodLastSevenDays = {
+    Map<String, double> countedFoodLastSevenDaysTotal = {
       'none': 0,
       'vegan': 0,
       'veggie': 0,
@@ -42,58 +43,12 @@ class ReportScreen extends StatelessWidget {
 
     dataMapSpecificSevenDays.forEach((key, value) {
       value.forEach((key, value) {
-        switch (value) {
-          case 'none':
-            {
-              countedFoodLastSevenDays['none']++;
-            }
-            break;
-
-          case 'vegan':
-            {
-              countedFoodLastSevenDays['vegan']++;
-            }
-            break;
-
-          case 'veggie':
-            {
-              countedFoodLastSevenDays['veggie']++;
-            }
-            break;
-
-          case 'fish':
-            {
-              countedFoodLastSevenDays['fish']++;
-            }
-            break;
-
-          case 'chicken':
-            {
-              countedFoodLastSevenDays['chicken']++;
-            }
-            break;
-          case 'pig':
-            {
-              countedFoodLastSevenDays['pig']++;
-            }
-            break;
-          case 'cow':
-            {
-              countedFoodLastSevenDays['cow']++;
-            }
-            break;
-          case '':
-            {}
-            break;
-
-          default:
-            {}
-            break;
+        if (value != '') {
+          countedFoodLastSevenDaysTotal[value]++;
         }
       });
     });
-    print('countedMealsLastSevenDays $countedFoodLastSevenDays');
-    return countedFoodLastSevenDays;
+    return countedFoodLastSevenDaysTotal;
   }
 
   Map countFoodAppearancesBreakfast() {
@@ -187,7 +142,7 @@ class ReportScreen extends StatelessWidget {
               ),
               ReportPie(
                 countedFood: countFoodAppearancesTotal(),
-                size: 120.0,
+                size: 110.0,
                 badges: true,
               ),
             ],

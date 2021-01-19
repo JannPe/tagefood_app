@@ -31,7 +31,7 @@ class _LoadingScreenState extends State<LoadingScreen> {
           visualDensity: VisualDensity.adaptivePlatformDensity,
         ),
         home: DefaultTabController(
-          length: 2,
+          length: 3,
           child: MyHomePage(dataMap: dataMap),
         ),
       );

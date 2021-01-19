@@ -98,7 +98,7 @@ class _MyHomePageState extends State<MyHomePage> {
     return dataMapSelectedSevenDays;
   }
 
-  List<Widget> getRecordScreens() {
+  List<Widget> getRecordScreensSevenDays() {
     List<Widget> recordScreens = [];
 
     DateTime maxDate = dateStampToday;
@@ -128,6 +128,18 @@ class _MyHomePageState extends State<MyHomePage> {
     return recordScreens;
   }
 
+  // List<Widget> getRecordScreensMonths() {
+  //   List<Widget> recordScreens = [];
+  //
+  //   var monthsDataMap = {};
+  //
+  //   int currentMonth = dateStampToday.month;
+  //
+  //   dataMap.
+  //
+  //   return recordScreens;
+  // }
+
   @override
   void initState() {
     super.initState();
@@ -146,7 +158,8 @@ class _MyHomePageState extends State<MyHomePage> {
             indicatorColor: Colors.white,
             tabs: [
               Tab(text: 'Home'),
-              Tab(text: 'Reports'),
+              Tab(text: '7 Days'),
+              Tab(text: 'Months'),
             ],
           ),
           automaticallyImplyLeading: false,
@@ -270,7 +283,11 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
           PageView(
             scrollDirection: Axis.vertical,
-            children: getRecordScreens(),
+            children: getRecordScreensSevenDays(),
+          ),
+          PageView(
+            scrollDirection: Axis.vertical,
+            children: getRecordScreensSevenDays(),
           ),
         ],
       ),
