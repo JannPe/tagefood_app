@@ -8,8 +8,6 @@ Tagefood supplies different review screens which allow the user to see how his o
 
 <img src="C:\Users\jannp\Videos\CodeWorks SoloProjekt\tagefood_screenshot_2.jpg" alt="tagefood_screenshot_2" style="zoom:25%;" />
 
-
-
 ## Getting Started
 
 Just download this repository and run "pug get" [https://dart.dev/tools/pub/cmd/pub-get] to install its dependencies. Afterwards it is suggested to open the code in android studio and to run it via a simulator [https://developer.android.com/studio/run/emulator] or a local physical device. 
