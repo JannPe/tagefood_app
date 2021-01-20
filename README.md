@@ -1,16 +1,20 @@
-# tagefood_app
+# Tagefood
 
-Tagefood help you to keep track of what you ate.
+...is a personal Tagebuch (German for Diary)  to help you raise your food awareness. The user may quickly and easily keep track on what kinds of food he/she is having for each meal. Also skipped meals can be entered in only seconds. 
+
+Tagefood supplies different review screens which allow the user to see how his or her eating behavior developed over time and can hereby easily raise his/her food awareness.
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+Just download this repository and run "pug get" [https://dart.dev/tools/pub/cmd/pub-get] to install its dependencies. Afterwards it is suggested to open the code in android studio and to run it via a simulator [https://developer.android.com/studio/run/emulator] or a local physical device. 
 
-A few resources to get you started if this is your first Flutter project:
+## Tech Stack
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+As a mobile flutter-app [https://flutter.dev]  the program uses Dart as its language. 
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## **Contributors** 
+
+Tagefood is a soloproject of mine. 
+
+
+
