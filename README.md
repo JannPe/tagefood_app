@@ -4,9 +4,9 @@
 
 Tagefood supplies different review screens which allow the user to see how his or her eating behavior developed over time and can hereby easily raise his/her food awareness.
 
-<img src="C:\Users\jannp\Videos\CodeWorks SoloProjekt\tagefood_screenshot_1.jpg" alt="tagefood_screenshot_1" style="zoom:25%;" />
+![tagefood_screenshot_1](https://user-images.githubusercontent.com/69305942/105215424-895d3e00-5b51-11eb-9dce-96f99a65fe45.jpg)
 
-<img src="C:\Users\jannp\Videos\CodeWorks SoloProjekt\tagefood_screenshot_2.jpg" alt="tagefood_screenshot_2" style="zoom:25%;" />
+![tagefood_screenshot_2](https://user-images.githubusercontent.com/69305942/105215444-8d895b80-5b51-11eb-9673-c8b7a88650b2.jpg)
 
 ## Getting Started
 
