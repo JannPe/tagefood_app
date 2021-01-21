@@ -23,18 +23,18 @@ class DayRow extends StatelessWidget {
               day,
               style: isToday == true
                   ? TextStyle(
-                      fontSize: 35.0,
+                      fontSize: 27.0,
                       fontWeight: FontWeight.bold,
                       color: Colors.blueGrey,
                       fontFamily: 'Kalam')
                   : TextStyle(
-                      fontSize: 30.0,
+                      fontSize: 25.0,
                       color: Colors.blueGrey,
                       fontFamily: 'Kalam'),
             ),
             Spacer(),
             Padding(
-              padding: const EdgeInsets.only(right: 20.0),
+              padding: const EdgeInsets.only(right: 15.0),
               child: Text(
                 '${date.day.toString()}.${date.month.toString()}.',
                 style: TextStyle(color: Colors.grey),

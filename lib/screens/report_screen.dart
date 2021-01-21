@@ -36,8 +36,8 @@ class ReportScreen extends StatelessWidget {
       'veggie': 0,
       'fish': 0,
       'chicken': 0,
-      'pig': 0,
-      'cow': 0
+      'pork': 0,
+      'beef': 0
     };
 
     dataMapSpecificDays.forEach((key, value) {
@@ -57,8 +57,8 @@ class ReportScreen extends StatelessWidget {
       'veggie': 0,
       'fish': 0,
       'chicken': 0,
-      'pig': 0,
-      'cow': 0
+      'pork': 0,
+      'beef': 0
     };
 
     dataMapSpecificDays.forEach((key, value) {
@@ -78,8 +78,8 @@ class ReportScreen extends StatelessWidget {
       'veggie': 0,
       'fish': 0,
       'chicken': 0,
-      'pig': 0,
-      'cow': 0
+      'pork': 0,
+      'beef': 0
     };
 
     dataMapSpecificDays.forEach((key, value) {
@@ -99,8 +99,8 @@ class ReportScreen extends StatelessWidget {
       'veggie': 0,
       'fish': 0,
       'chicken': 0,
-      'pig': 0,
-      'cow': 0
+      'pork': 0,
+      'beef': 0
     };
 
     dataMapSpecificDays.forEach((key, value) {

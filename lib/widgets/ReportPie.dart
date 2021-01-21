@@ -157,10 +157,10 @@ class _ReportPieState extends State<ReportPie> {
         case 4:
           return PieChartSectionData(
             color: Colors.deepOrangeAccent[200],
-            value: countedFood['pig'],
-            title: countedFood['pig'] == 0
+            value: countedFood['pork'],
+            title: countedFood['pork'] == 0
                 ? ''
-                : countedFood['pig'].toInt().toString(),
+                : countedFood['pork'].toInt().toString(),
             radius: radius,
             titleStyle: TextStyle(
                 fontSize: fontSize,
@@ -168,7 +168,7 @@ class _ReportPieState extends State<ReportPie> {
                 color: const Color(0xffffffff)),
             badgeWidget: widget.badges
                 ? _Badge(
-                    'assets/pig.png',
+                    'assets/pork.png',
                     size: widgetSize,
                     borderColor: Colors.deepOrangeAccent[200],
                   )
@@ -182,10 +182,10 @@ class _ReportPieState extends State<ReportPie> {
         case 5:
           return PieChartSectionData(
             color: Colors.deepPurpleAccent[200],
-            value: countedFood['cow'],
-            title: countedFood['cow'] == 0
+            value: countedFood['beef'],
+            title: countedFood['beef'] == 0
                 ? ''
-                : countedFood['cow'].toInt().toString(),
+                : countedFood['beef'].toInt().toString(),
             radius: radius,
             titleStyle: TextStyle(
                 fontSize: fontSize,
@@ -193,7 +193,7 @@ class _ReportPieState extends State<ReportPie> {
                 color: const Color(0xffffffff)),
             badgeWidget: widget.badges
                 ? _Badge(
-                    'assets/cow.png',
+                    'assets/beef.png',
                     size: widgetSize,
                     borderColor: Colors.deepPurpleAccent,
                   )

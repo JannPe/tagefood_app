@@ -26,8 +26,8 @@ class _MyHomePageState extends State<MyHomePage> {
     'veggie',
     'fish',
     'chicken',
-    'pig',
-    'cow'
+    'pork',
+    'beef'
   ];
 
   Map dataMap; //central local storageMap to supply meals across the app
@@ -316,14 +316,17 @@ class _MyHomePageState extends State<MyHomePage> {
                 ],
               ),
             ),
-            PageView(
-              //TODO: wrap report screens is cards to see progress during scrolling
-              scrollDirection: Axis.vertical,
-              children: getRecordScreens(6, 0),
+            Scrollbar(
+              child: PageView(
+                scrollDirection: Axis.vertical,
+                children: getRecordScreens(6, 0),
+              ),
             ),
-            PageView(
-              scrollDirection: Axis.vertical,
-              children: getRecordScreens(30, 0),
+            Scrollbar(
+              child: PageView(
+                scrollDirection: Axis.vertical,
+                children: getRecordScreens(30, 0),
+              ),
             ),
           ],
         ),

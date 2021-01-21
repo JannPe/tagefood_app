@@ -13,7 +13,7 @@ class StorageManager {
     },
     new DateTime(2021, 1, 19).toString(): {
       'Breakfast': 'none',
-      'Lunch': 'pig',
+      'Lunch': 'pork',
       'Dinner': 'chicken'
     },
     new DateTime(2021, 1, 18).toString(): {
@@ -23,88 +23,23 @@ class StorageManager {
     },
     new DateTime(2021, 1, 17).toString(): {
       'Breakfast': 'veggie',
-      'Lunch': 'none',
-      'Dinner': 'cow'
+      'Lunch': 'chicken',
+      'Dinner': 'pork'
     },
     new DateTime(2021, 1, 16).toString(): {
-      'Breakfast': 'pig',
-      'Lunch': 'fish',
-      'Dinner': 'veggie'
+      'Breakfast': 'pork',
+      'Lunch': 'none',
+      'Dinner': 'pork'
     },
     new DateTime(2021, 1, 15).toString(): {
       'Breakfast': 'none',
       'Lunch': 'veggie',
-      'Dinner': 'fish'
+      'Dinner': 'veggie'
     },
     new DateTime(2021, 1, 14).toString(): {
-      'Breakfast': 'fish',
-      'Lunch': 'none',
-      'Dinner': 'vegan'
-    },
-    new DateTime(2021, 1, 13).toString(): {
-      'Breakfast': 'chicken',
-      'Lunch': 'vegan',
-      'Dinner': 'fish'
-    },
-    new DateTime(2021, 1, 12).toString(): {
-      'Breakfast': 'chicken',
-      'Lunch': 'vegan',
-      'Dinner': 'fish'
-    },
-    new DateTime(2021, 1, 11).toString(): {
-      'Breakfast': 'veggie',
-      'Lunch': 'pig',
-      'Dinner': 'fish'
-    },
-    new DateTime(2021, 1, 10).toString(): {
-      'Breakfast': 'veggie',
-      'Lunch': 'fish',
-      'Dinner': 'fish'
-    },
-    new DateTime(2021, 1, 9).toString(): {
-      'Breakfast': 'vegan',
-      'Lunch': 'pig',
-      'Dinner': 'cow'
-    },
-    new DateTime(2021, 1, 8).toString(): {
-      'Breakfast': 'vegan',
-      'Lunch': 'pig',
-      'Dinner': 'cow'
-    },
-    new DateTime(2021, 1, 7).toString(): {
-      'Breakfast': 'vegan',
-      'Lunch': 'pig',
-      'Dinner': 'cow'
-    },
-    new DateTime(2021, 1, 6).toString(): {
-      'Breakfast': 'vegan',
-      'Lunch': 'pig',
-      'Dinner': 'cow'
-    },
-    new DateTime(2021, 1, 5).toString(): {
-      'Breakfast': 'vegan',
-      'Lunch': 'pig',
-      'Dinner': 'cow'
-    },
-    new DateTime(2021, 1, 4).toString(): {
-      'Breakfast': 'vegan',
-      'Lunch': 'pig',
-      'Dinner': 'cow'
-    },
-    new DateTime(2021, 1, 3).toString(): {
-      'Breakfast': 'vegan',
-      'Lunch': 'pig',
-      'Dinner': 'cow'
-    },
-    new DateTime(2021, 1, 2).toString(): {
-      'Breakfast': 'vegan',
-      'Lunch': 'pig',
-      'Dinner': 'cow'
-    },
-    new DateTime(2021, 1, 1).toString(): {
-      'Breakfast': 'vegan',
-      'Lunch': 'pig',
-      'Dinner': 'cow'
+      'Breakfast': 'none',
+      'Lunch': 'pork',
+      'Dinner': 'none'
     },
   }; //mock Data to show the app, to be deleted later
   Map<DateTime, dynamic> dataMapJSONDecodedParsed;
