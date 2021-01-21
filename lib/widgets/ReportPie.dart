@@ -70,12 +70,12 @@ class _ReportPieState extends State<ReportPie> {
                 ? _Badge(
                     'assets/.png',
                     size: 0.0,
-                    borderColor: Colors.amberAccent,
+                    borderColor: Colors.green[200],
                   )
                 : _Badge(
                     'assets/vegan.png',
                     size: widgetSize,
-                    borderColor: Colors.amberAccent,
+                    borderColor: Colors.green[200],
                   ),
             badgePositionPercentageOffset: .98,
           );
@@ -95,12 +95,12 @@ class _ReportPieState extends State<ReportPie> {
                 ? _Badge(
                     'assets/.png',
                     size: 0.0,
-                    borderColor: Colors.amberAccent,
+                    borderColor: Colors.green[400],
                   )
                 : _Badge(
                     'assets/veggie.png',
                     size: widgetSize,
-                    borderColor: Colors.amberAccent,
+                    borderColor: Colors.green[400],
                   ),
             badgePositionPercentageOffset: .98,
           );
@@ -120,12 +120,12 @@ class _ReportPieState extends State<ReportPie> {
                 ? _Badge(
                     'assets/.png',
                     size: 0.0,
-                    borderColor: Colors.amberAccent,
+                    borderColor: Colors.blueAccent,
                   )
                 : _Badge(
                     'assets/fish.png',
                     size: widgetSize,
-                    borderColor: Colors.amberAccent,
+                    borderColor: Colors.blueAccent,
                   ),
             badgePositionPercentageOffset: .98,
           );
@@ -170,12 +170,12 @@ class _ReportPieState extends State<ReportPie> {
                 ? _Badge(
                     'assets/.png',
                     size: 0.0,
-                    borderColor: Colors.amberAccent,
+                    borderColor: Colors.deepOrangeAccent[200],
                   )
                 : _Badge(
                     'assets/pork.png',
                     size: widgetSize,
-                    borderColor: Colors.amberAccent,
+                    borderColor: Colors.deepOrangeAccent[200],
                   ),
             badgePositionPercentageOffset: .98,
           );
@@ -195,12 +195,12 @@ class _ReportPieState extends State<ReportPie> {
                 ? _Badge(
                     'assets/.png',
                     size: 0.0,
-                    borderColor: Colors.amberAccent,
+                    borderColor: Colors.deepPurpleAccent[200],
                   )
                 : _Badge(
                     'assets/beef.png',
                     size: widgetSize,
-                    borderColor: Colors.amberAccent,
+                    borderColor: Colors.deepPurpleAccent[200],
                   ),
             badgePositionPercentageOffset: .98,
           );
@@ -220,12 +220,12 @@ class _ReportPieState extends State<ReportPie> {
                 ? _Badge(
                     'assets/.png',
                     size: 0.0,
-                    borderColor: Colors.amberAccent,
+                    borderColor: Colors.blueGrey,
                   )
                 : _Badge(
                     'assets/none.png',
                     size: widgetSize,
-                    borderColor: Colors.amberAccent,
+                    borderColor: Colors.blueGrey,
                   ),
             badgePositionPercentageOffset: .98,
           );
