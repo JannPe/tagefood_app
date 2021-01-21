@@ -94,7 +94,6 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   List<FoodImage> getFoodImages(double suppliedHeight) {
-    //TODO: give it height depending on screenheight
     List<FoodImage> foodImages = [];
     food.forEach((foodItem) {
       foodImages.add(FoodImage(
@@ -128,6 +127,7 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   List<Widget> getRecordScreens(int suppliedStart, int suppliedEnd) {
+    //TODO: rearrange for loop to debug
     List<Widget> recordScreens = [];
 
     DateTime maxDate = dateStampToday;
@@ -142,7 +142,7 @@ class _MyHomePageState extends State<MyHomePage> {
     int start = suppliedStart;
     int end = suppliedEnd;
 
-    for (var i = 0; i < daysIntervalsBetweenMinAndMax.ceil() - 1; i++) {
+    for (var i = 0; i < (daysIntervalsBetweenMinAndMax - 1).round(); i++) {
       recordScreens.add(ReportScreen(
           dataMapSpecificDays: constructDataMapForSpecificDays(start, end)));
       start += suppliedStart + 1;

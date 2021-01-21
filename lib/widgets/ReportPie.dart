@@ -14,6 +14,7 @@ class ReportPie extends StatefulWidget {
 }
 
 class _ReportPieState extends State<ReportPie> {
+  //TODO: let values of zero disappear the section
   _ReportPieState();
 
   int touchedIndex;
@@ -58,7 +59,9 @@ class _ReportPieState extends State<ReportPie> {
           return PieChartSectionData(
             color: Colors.green[200],
             value: countedFood['vegan'],
-            title: countedFood['vegan'].toInt().toString(),
+            title: countedFood['vegan'] == 0
+                ? ''
+                : countedFood['vegan'].toInt().toString(),
             radius: radius,
             titleStyle: TextStyle(
                 fontSize: fontSize,
@@ -81,7 +84,9 @@ class _ReportPieState extends State<ReportPie> {
           return PieChartSectionData(
             color: Colors.green[400],
             value: countedFood['veggie'],
-            title: countedFood['veggie'].toInt().toString(),
+            title: countedFood['veggie'] == 0
+                ? ''
+                : countedFood['veggie'].toInt().toString(),
             radius: radius,
             titleStyle: TextStyle(
                 fontSize: fontSize,
@@ -104,7 +109,9 @@ class _ReportPieState extends State<ReportPie> {
           return PieChartSectionData(
             color: Colors.blueAccent,
             value: countedFood['fish'],
-            title: countedFood['fish'].toInt().toString(),
+            title: countedFood['fish'] == 0
+                ? ''
+                : countedFood['fish'].toInt().toString(),
             radius: radius,
             titleStyle: TextStyle(
                 fontSize: fontSize,
@@ -127,7 +134,9 @@ class _ReportPieState extends State<ReportPie> {
           return PieChartSectionData(
             color: Colors.amberAccent,
             value: countedFood['chicken'],
-            title: countedFood['chicken'].toInt().toString(),
+            title: countedFood['chicken'] == 0
+                ? ''
+                : countedFood['chicken'].toInt().toString(),
             radius: radius,
             titleStyle: TextStyle(
                 fontSize: fontSize,
@@ -150,7 +159,9 @@ class _ReportPieState extends State<ReportPie> {
           return PieChartSectionData(
             color: Colors.deepOrangeAccent[200],
             value: countedFood['pig'],
-            title: countedFood['pig'].toInt().toString(),
+            title: countedFood['pig'] == 0
+                ? ''
+                : countedFood['pig'].toInt().toString(),
             radius: radius,
             titleStyle: TextStyle(
                 fontSize: fontSize,
@@ -173,7 +184,9 @@ class _ReportPieState extends State<ReportPie> {
           return PieChartSectionData(
             color: Colors.deepPurpleAccent[200],
             value: countedFood['cow'],
-            title: countedFood['cow'].toInt().toString(),
+            title: countedFood['cow'] == 0
+                ? ''
+                : countedFood['cow'].toInt().toString(),
             radius: radius,
             titleStyle: TextStyle(
                 fontSize: fontSize,
@@ -196,7 +209,9 @@ class _ReportPieState extends State<ReportPie> {
           return PieChartSectionData(
             color: Colors.blueGrey,
             value: countedFood['none'],
-            title: countedFood['none'].toInt().toString(),
+            title: countedFood['none'] == 0
+                ? ''
+                : countedFood['none'].toInt().toString(),
             radius: radius,
             titleStyle: TextStyle(
                 fontSize: fontSize,
