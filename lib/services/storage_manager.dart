@@ -6,6 +6,21 @@ class StorageManager {
   String dataMapJSON;
 
   Map<String, Map> startingMap = {
+    new DateTime(2021, 1, 20).toString(): {
+      'Breakfast': 'veggie',
+      'Lunch': 'vegan',
+      'Dinner': 'chicken'
+    },
+    new DateTime(2021, 1, 19).toString(): {
+      'Breakfast': 'none',
+      'Lunch': 'pig',
+      'Dinner': 'chicken'
+    },
+    new DateTime(2021, 1, 18).toString(): {
+      'Breakfast': 'none',
+      'Lunch': 'none',
+      'Dinner': 'chicken'
+    },
     new DateTime(2021, 1, 17).toString(): {
       'Breakfast': 'veggie',
       'Lunch': 'none',
@@ -91,7 +106,7 @@ class StorageManager {
       'Lunch': 'pig',
       'Dinner': 'cow'
     },
-  }; //mock Data to show the app
+  }; //mock Data to show the app, to be deleted later
   Map<DateTime, dynamic> dataMapJSONDecodedParsed;
 
   Future getData() async {

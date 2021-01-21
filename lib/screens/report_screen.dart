@@ -1,15 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../widgets/ReportPie.dart';
-import 'package:toggle_switch/toggle_switch.dart';
 
 class ReportScreen extends StatelessWidget {
-  ReportScreen({this.dataMapSpecificSevenDays});
+  ReportScreen({this.dataMapSpecificDays});
 
-  final Map dataMapSpecificSevenDays;
+  final Map dataMapSpecificDays;
 
   String getFromDate() {
-    List dates = dataMapSpecificSevenDays.keys.toList();
+    List dates = dataMapSpecificDays.keys.toList();
     DateTime maxDate = dates[0];
     dates.forEach((date) {
       if (date.isAfter(maxDate)) {
@@ -20,7 +19,7 @@ class ReportScreen extends StatelessWidget {
   }
 
   String getToDate() {
-    List dates = dataMapSpecificSevenDays.keys.toList();
+    List dates = dataMapSpecificDays.keys.toList();
     DateTime minDate = dates[0];
     dates.forEach((date) {
       if (date.isBefore(minDate)) {
@@ -31,7 +30,7 @@ class ReportScreen extends StatelessWidget {
   }
 
   Map countFoodAppearancesTotal() {
-    Map<String, double> countedFoodLastSevenDaysTotal = {
+    Map<String, double> countedFoodTotal = {
       'none': 0,
       'vegan': 0,
       'veggie': 0,
@@ -41,18 +40,18 @@ class ReportScreen extends StatelessWidget {
       'cow': 0
     };
 
-    dataMapSpecificSevenDays.forEach((key, value) {
+    dataMapSpecificDays.forEach((key, value) {
       value.forEach((key, value) {
         if (value != '') {
-          countedFoodLastSevenDaysTotal[value]++;
+          countedFoodTotal[value]++;
         }
       });
     });
-    return countedFoodLastSevenDaysTotal;
+    return countedFoodTotal;
   }
 
   Map countFoodAppearancesBreakfast() {
-    Map<String, double> countedFoodLastSevenDaysBreakfast = {
+    Map<String, double> countedFoodBreakfast = {
       'none': 0,
       'vegan': 0,
       'veggie': 0,
@@ -62,18 +61,18 @@ class ReportScreen extends StatelessWidget {
       'cow': 0
     };
 
-    dataMapSpecificSevenDays.forEach((key, value) {
+    dataMapSpecificDays.forEach((key, value) {
       value.forEach((key, value) {
         if (key == 'Breakfast' && value != '') {
-          countedFoodLastSevenDaysBreakfast[value]++;
+          countedFoodBreakfast[value]++;
         }
       });
     });
-    return countedFoodLastSevenDaysBreakfast;
+    return countedFoodBreakfast;
   }
 
   Map countFoodAppearancesLunch() {
-    Map<String, double> countedFoodLastSevenDaysBreakfast = {
+    Map<String, double> countedFoodLunch = {
       'none': 0,
       'vegan': 0,
       'veggie': 0,
@@ -83,18 +82,18 @@ class ReportScreen extends StatelessWidget {
       'cow': 0
     };
 
-    dataMapSpecificSevenDays.forEach((key, value) {
+    dataMapSpecificDays.forEach((key, value) {
       value.forEach((key, value) {
         if (key == 'Lunch' && value != '') {
-          countedFoodLastSevenDaysBreakfast[value]++;
+          countedFoodLunch[value]++;
         }
       });
     });
-    return countedFoodLastSevenDaysBreakfast;
+    return countedFoodLunch;
   }
 
   Map countFoodAppearancesDinner() {
-    Map<String, double> countedFoodLastSevenDaysBreakfast = {
+    Map<String, double> countedFoodDinner = {
       'none': 0,
       'vegan': 0,
       'veggie': 0,
@@ -104,14 +103,14 @@ class ReportScreen extends StatelessWidget {
       'cow': 0
     };
 
-    dataMapSpecificSevenDays.forEach((key, value) {
+    dataMapSpecificDays.forEach((key, value) {
       value.forEach((key, value) {
         if (key == 'Dinner' && value != '') {
-          countedFoodLastSevenDaysBreakfast[value]++;
+          countedFoodDinner[value]++;
         }
       });
     });
-    return countedFoodLastSevenDaysBreakfast;
+    return countedFoodDinner;
   }
 
   @override

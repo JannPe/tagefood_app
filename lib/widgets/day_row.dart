@@ -28,7 +28,7 @@ class DayRow extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 2.0),
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Image.asset(
                     'assets/${dataMap['Breakfast']}.png',

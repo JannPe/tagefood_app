@@ -51,16 +51,33 @@ class _MyHomePageState extends State<MyHomePage> {
     if (now.weekday == 1) {
       //set days List to match to today and correct prior days
       return;
-    } else if (now.weekday >= 2) {
+    } else {
       for (int i = 0; i < now.weekday - 1; i++) {
         days.insert(0, days.removeLast());
       }
     }
   }
 
-  String selectedTime = 'Breakfast';
-  void _selectTime(selectedIndex) {
-    selectedTime = meals[selectedIndex];
+  int setInitialSelectedMeal() {
+    //setsInitialMeal and lets MealPicker adapt to current time
+    int currentHour = new DateTime.now().hour;
+    print('currentHours $currentHour');
+    if (currentHour > 11 && currentHour < 17) {
+      selectedMeal = 'Lunch';
+      return 1;
+    } else if (currentHour >= 17 && currentHour < 23) {
+      selectedMeal = 'Dinner';
+      return 2;
+    } else {
+      selectedMeal = 'Breakfast';
+      return 0;
+    }
+  }
+
+  String selectedMeal;
+
+  void _selectMeal(selectedIndex) {
+    selectedMeal = meals[selectedIndex];
   }
 
   String selectedFood = 'vegan';
@@ -70,13 +87,14 @@ class _MyHomePageState extends State<MyHomePage> {
 
   void _submit() {
     setState(() {
-      dataMap[dateStampToday][selectedTime] = selectedFood;
+      dataMap[dateStampToday][selectedMeal] = selectedFood;
       //print('updated locally for TODAY to ${dataMap[dateStampToday]}');
       storageManager.setData(dataMap);
     });
   }
 
   List<FoodImage> getFoodImages(double suppliedHeight) {
+    //TODO: give it height depending on screenheight
     List<FoodImage> foodImages = [];
     food.forEach((foodItem) {
       foodImages.add(FoodImage(
@@ -87,15 +105,14 @@ class _MyHomePageState extends State<MyHomePage> {
     return foodImages;
   }
 
-  Map constructDataMapForSpecificSevenDays(int start, int end) {
-    Map dataMapSelectedSevenDays = Map.from(dataMap);
+  Map constructDataMapForSpecificDays(int start, int end) {
+    Map dataMapSelectedDays = Map.from(dataMap);
 
-    dataMapSelectedSevenDays.removeWhere((key, value) =>
+    dataMapSelectedDays.removeWhere((key, value) =>
         key.isBefore(dateStampToday.subtract(Duration(days: start))) ||
         key.isAfter(dateStampToday.subtract(Duration(days: end))));
 
-    print('dataMapSelectedSevenDays construct   $dataMapSelectedSevenDays');
-    return dataMapSelectedSevenDays;
+    return dataMapSelectedDays;
   }
 
   DateTime minDate;
@@ -127,8 +144,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
     for (var i = 0; i < daysIntervalsBetweenMinAndMax.ceil() - 1; i++) {
       recordScreens.add(ReportScreen(
-          dataMapSpecificSevenDays:
-              constructDataMapForSpecificSevenDays(start, end)));
+          dataMapSpecificDays: constructDataMapForSpecificDays(start, end)));
       start += suppliedStart + 1;
       end += suppliedStart + 1;
     }
@@ -140,6 +156,7 @@ class _MyHomePageState extends State<MyHomePage> {
     super.initState();
     calculateMinDate();
     setCurrentDayAndGetDays();
+    setInitialSelectedMeal();
     setState(() {});
   }
 
@@ -213,9 +230,11 @@ class _MyHomePageState extends State<MyHomePage> {
                       height: 150.0,
                       width: 100.0,
                       child: CupertinoPicker(
+                        scrollController: FixedExtentScrollController(
+                            initialItem: setInitialSelectedMeal()),
                         itemExtent: 50.0,
                         onSelectedItemChanged: (selectedIndex) {
-                          _selectTime(selectedIndex);
+                          _selectMeal(selectedIndex);
                         },
                         children: [
                           Center(
