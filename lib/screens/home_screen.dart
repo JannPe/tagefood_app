@@ -127,7 +127,6 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   List<Widget> getRecordScreens(int suppliedStart, int suppliedEnd) {
-    //TODO: rearrange for loop to debug
     List<Widget> recordScreens = [];
 
     DateTime maxDate = dateStampToday;
@@ -160,7 +159,7 @@ class _MyHomePageState extends State<MyHomePage> {
     setState(() {});
   }
 
-  @override
+  @override //enable user to change/enter any day. maybe with calendar? swuiping to the left? or down with a pop up card
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: PreferredSize(
@@ -299,7 +298,7 @@ class _MyHomePageState extends State<MyHomePage> {
               ],
             ),
           ),
-          PageView(
+          PageView( //TODO: wrap report screens is cards to see progress during scrolling
             scrollDirection: Axis.vertical,
             children: getRecordScreens(6, 0),
           ),

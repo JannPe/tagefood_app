@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class DayRow extends StatelessWidget {
   DayRow({@required this.dataMap, @required this.day, this.isToday});
 
-  final dataMap;
+  final Map dataMap;
   final day;
   final isToday;
 
@@ -15,7 +15,7 @@ class DayRow extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(
-              day,
+              day, //TODO: also display day and month
               style: isToday == true
                   ? TextStyle(
                       fontSize: 35.0,
@@ -38,13 +38,13 @@ class DayRow extends StatelessWidget {
                     fit: BoxFit.cover,
                   ), //Breakfast
                   Container(
-                    height: 5.0,
+                    height: 3.0,
                     decoration: BoxDecoration(
                       border: Border.all(
                         color: Colors.greenAccent,
                         width: 25.0,
                       ),
-                      borderRadius: BorderRadius.circular(10.0),
+                      borderRadius: BorderRadius.circular(5.0),
                     ),
                   ), //green line between Icons
                   Image.asset(
@@ -53,7 +53,7 @@ class DayRow extends StatelessWidget {
                     fit: BoxFit.cover,
                   ), //Lunch
                   Container(
-                    height: 5.0,
+                    height: 3.0,
                     decoration: BoxDecoration(
                       border: Border.all(
                         color: Colors.greenAccent,

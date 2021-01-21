@@ -14,7 +14,6 @@ class ReportPie extends StatefulWidget {
 }
 
 class _ReportPieState extends State<ReportPie> {
-  //TODO: let values of zero disappear the section
   _ReportPieState();
 
   int touchedIndex;
