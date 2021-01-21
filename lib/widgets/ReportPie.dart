@@ -66,16 +66,16 @@ class _ReportPieState extends State<ReportPie> {
                 fontSize: fontSize,
                 fontWeight: FontWeight.bold,
                 color: const Color(0xffffffff)),
-            badgeWidget: widget.badges
+            badgeWidget: !widget.badges || countedFood['vegan'] == 0
                 ? _Badge(
-                    'assets/vegan.png',
-                    size: widgetSize,
-                    borderColor: Colors.green[200],
-                  )
-                : _Badge(
                     'assets/.png',
                     size: 0.0,
-                    borderColor: Colors.green[200],
+                    borderColor: Colors.amberAccent,
+                  )
+                : _Badge(
+                    'assets/vegan.png',
+                    size: widgetSize,
+                    borderColor: Colors.amberAccent,
                   ),
             badgePositionPercentageOffset: .98,
           );
@@ -91,16 +91,16 @@ class _ReportPieState extends State<ReportPie> {
                 fontSize: fontSize,
                 fontWeight: FontWeight.bold,
                 color: const Color(0xffffffff)),
-            badgeWidget: widget.badges
+            badgeWidget: !widget.badges || countedFood['veggie'] == 0
                 ? _Badge(
-                    'assets/veggie.png',
-                    size: widgetSize,
-                    borderColor: Colors.green[400],
-                  )
-                : _Badge(
                     'assets/.png',
                     size: 0.0,
-                    borderColor: Colors.green[400],
+                    borderColor: Colors.amberAccent,
+                  )
+                : _Badge(
+                    'assets/veggie.png',
+                    size: widgetSize,
+                    borderColor: Colors.amberAccent,
                   ),
             badgePositionPercentageOffset: .98,
           );
@@ -116,16 +116,16 @@ class _ReportPieState extends State<ReportPie> {
                 fontSize: fontSize,
                 fontWeight: FontWeight.bold,
                 color: const Color(0xffffffff)),
-            badgeWidget: widget.badges
+            badgeWidget: !widget.badges || countedFood['fish'] == 0
                 ? _Badge(
-                    'assets/fish.png',
-                    size: widgetSize,
-                    borderColor: Colors.blueAccent,
-                  )
-                : _Badge(
                     'assets/.png',
                     size: 0.0,
-                    borderColor: Colors.blueAccent,
+                    borderColor: Colors.amberAccent,
+                  )
+                : _Badge(
+                    'assets/fish.png',
+                    size: widgetSize,
+                    borderColor: Colors.amberAccent,
                   ),
             badgePositionPercentageOffset: .98,
           );
@@ -141,15 +141,15 @@ class _ReportPieState extends State<ReportPie> {
                 fontSize: fontSize,
                 fontWeight: FontWeight.bold,
                 color: const Color(0xffffffff)),
-            badgeWidget: widget.badges
+            badgeWidget: !widget.badges || countedFood['chicken'] == 0
                 ? _Badge(
-                    'assets/chicken.png',
-                    size: widgetSize,
+                    'assets/.png',
+                    size: 0.0,
                     borderColor: Colors.amberAccent,
                   )
                 : _Badge(
-                    'assets/.png',
-                    size: 0.0,
+                    'assets/chicken.png',
+                    size: widgetSize,
                     borderColor: Colors.amberAccent,
                   ),
             badgePositionPercentageOffset: .98,
@@ -166,16 +166,16 @@ class _ReportPieState extends State<ReportPie> {
                 fontSize: fontSize,
                 fontWeight: FontWeight.bold,
                 color: const Color(0xffffffff)),
-            badgeWidget: widget.badges
+            badgeWidget: !widget.badges || countedFood['pork'] == 0
                 ? _Badge(
-                    'assets/pork.png',
-                    size: widgetSize,
-                    borderColor: Colors.deepOrangeAccent[200],
-                  )
-                : _Badge(
                     'assets/.png',
                     size: 0.0,
-                    borderColor: Colors.deepOrangeAccent[200],
+                    borderColor: Colors.amberAccent,
+                  )
+                : _Badge(
+                    'assets/pork.png',
+                    size: widgetSize,
+                    borderColor: Colors.amberAccent,
                   ),
             badgePositionPercentageOffset: .98,
           );
@@ -191,16 +191,16 @@ class _ReportPieState extends State<ReportPie> {
                 fontSize: fontSize,
                 fontWeight: FontWeight.bold,
                 color: const Color(0xffffffff)),
-            badgeWidget: widget.badges
+            badgeWidget: !widget.badges || countedFood['beef'] == 0
                 ? _Badge(
-                    'assets/beef.png',
-                    size: widgetSize,
-                    borderColor: Colors.deepPurpleAccent,
-                  )
-                : _Badge(
                     'assets/.png',
                     size: 0.0,
-                    borderColor: Colors.deepPurpleAccent,
+                    borderColor: Colors.amberAccent,
+                  )
+                : _Badge(
+                    'assets/beef.png',
+                    size: widgetSize,
+                    borderColor: Colors.amberAccent,
                   ),
             badgePositionPercentageOffset: .98,
           );
@@ -216,16 +216,16 @@ class _ReportPieState extends State<ReportPie> {
                 fontSize: fontSize,
                 fontWeight: FontWeight.bold,
                 color: const Color(0xffffffff)),
-            badgeWidget: widget.badges
+            badgeWidget: !widget.badges || countedFood['none'] == 0
                 ? _Badge(
-                    'assets/none.png',
-                    size: widgetSize,
-                    borderColor: Colors.blueGrey,
-                  )
-                : _Badge(
                     'assets/.png',
                     size: 0.0,
-                    borderColor: Colors.blueGrey,
+                    borderColor: Colors.amberAccent,
+                  )
+                : _Badge(
+                    'assets/none.png',
+                    size: widgetSize,
+                    borderColor: Colors.amberAccent,
                   ),
             badgePositionPercentageOffset: .98,
           );

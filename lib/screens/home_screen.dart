@@ -141,7 +141,7 @@ class _MyHomePageState extends State<MyHomePage> {
     int start = suppliedStart;
     int end = suppliedEnd;
 
-    for (var i = 0; i < (daysIntervalsBetweenMinAndMax - 1).round(); i++) {
+    for (var i = 0; i < (daysIntervalsBetweenMinAndMax - 1).ceil(); i++) {
       recordScreens.add(ReportScreen(
           dataMapSpecificDays: constructDataMapForSpecificDays(start, end)));
       start += suppliedStart + 1;
