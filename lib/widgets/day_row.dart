@@ -20,7 +20,7 @@ class DayRow extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(
-              day, //TODO: also display day and month
+              day,
               style: isToday == true
                   ? TextStyle(
                       fontSize: 35.0,

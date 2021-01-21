@@ -177,144 +177,156 @@ class _MyHomePageState extends State<MyHomePage> {
           automaticallyImplyLeading: false,
         ),
       ),
-      body: TabBarView(
-        children: [
-          SafeArea(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(10, 10, 10, 5),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: <Widget>[
-                      DayRow(
-                          day: days[0],
-                          date: dateStampToday,
-                          dataMap: dataMap[dateStampToday],
-                          isToday: true),
-                      DayRow(
-                          day: days[1],
-                          date: dateStampToday.subtract(Duration(days: 1)),
-                          dataMap: dataMap[
-                                  dateStampToday.subtract(Duration(days: 1))] ??
-                              {'Breakfast': '', 'Lunch': '', 'Dinner': ''}),
-                      DayRow(
-                          day: days[2],
-                          date: dateStampToday.subtract(Duration(days: 2)),
-                          dataMap: dataMap[
-                                  dateStampToday.subtract(Duration(days: 2))] ??
-                              {'Breakfast': '', 'Lunch': '', 'Dinner': ''}),
-                      DayRow(
-                          day: days[3],
-                          date: dateStampToday.subtract(Duration(days: 3)),
-                          dataMap: dataMap[
-                                  dateStampToday.subtract(Duration(days: 3))] ??
-                              {'Breakfast': '', 'Lunch': '', 'Dinner': ''}),
-                      DayRow(
-                          day: days[4],
-                          date: dateStampToday.subtract(Duration(days: 4)),
-                          dataMap: dataMap[
-                                  dateStampToday.subtract(Duration(days: 4))] ??
-                              {'Breakfast': '', 'Lunch': '', 'Dinner': ''}),
-                      DayRow(
-                          day: days[5],
-                          date: dateStampToday.subtract(Duration(days: 5)),
-                          dataMap: dataMap[
-                                  dateStampToday.subtract(Duration(days: 5))] ??
-                              {'Breakfast': '', 'Lunch': '', 'Dinner': ''}),
-                      DayRow(
-                          day: days[6],
-                          date: dateStampToday.subtract(Duration(days: 6)),
-                          dataMap: dataMap[
-                                  dateStampToday.subtract(Duration(days: 6))] ??
-                              {'Breakfast': '', 'Lunch': '', 'Dinner': ''}),
+      body: Builder(
+        builder: (context) => TabBarView(
+          children: [
+            SafeArea(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(10, 10, 10, 5),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: <Widget>[
+                        DayRow(
+                            day: days[0],
+                            date: dateStampToday,
+                            dataMap: dataMap[dateStampToday],
+                            isToday: true),
+                        DayRow(
+                            day: days[1],
+                            date: dateStampToday.subtract(Duration(days: 1)),
+                            dataMap: dataMap[dateStampToday
+                                    .subtract(Duration(days: 1))] ??
+                                {'Breakfast': '', 'Lunch': '', 'Dinner': ''}),
+                        DayRow(
+                            day: days[2],
+                            date: dateStampToday.subtract(Duration(days: 2)),
+                            dataMap: dataMap[dateStampToday
+                                    .subtract(Duration(days: 2))] ??
+                                {'Breakfast': '', 'Lunch': '', 'Dinner': ''}),
+                        DayRow(
+                            day: days[3],
+                            date: dateStampToday.subtract(Duration(days: 3)),
+                            dataMap: dataMap[dateStampToday
+                                    .subtract(Duration(days: 3))] ??
+                                {'Breakfast': '', 'Lunch': '', 'Dinner': ''}),
+                        DayRow(
+                            day: days[4],
+                            date: dateStampToday.subtract(Duration(days: 4)),
+                            dataMap: dataMap[dateStampToday
+                                    .subtract(Duration(days: 4))] ??
+                                {'Breakfast': '', 'Lunch': '', 'Dinner': ''}),
+                        DayRow(
+                            day: days[5],
+                            date: dateStampToday.subtract(Duration(days: 5)),
+                            dataMap: dataMap[dateStampToday
+                                    .subtract(Duration(days: 5))] ??
+                                {'Breakfast': '', 'Lunch': '', 'Dinner': ''}),
+                        DayRow(
+                            day: days[6],
+                            date: dateStampToday.subtract(Duration(days: 6)),
+                            dataMap: dataMap[dateStampToday
+                                    .subtract(Duration(days: 6))] ??
+                                {'Breakfast': '', 'Lunch': '', 'Dinner': ''}),
+                      ],
+                    ),
+                  ), //Days Overview
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      Container(
+                        height: 150.0,
+                        width: 100.0,
+                        child: CupertinoPicker(
+                          scrollController: FixedExtentScrollController(
+                              initialItem: setInitialSelectedMeal()),
+                          itemExtent: 50.0,
+                          onSelectedItemChanged: (selectedIndex) {
+                            _selectMeal(selectedIndex);
+                          },
+                          children: [
+                            Center(
+                              child: Text(
+                                'Breakfast',
+                                style: TextStyle(fontFamily: 'JosefinSans'),
+                              ),
+                            ),
+                            Center(
+                              child: Text(
+                                'Lunch',
+                                style: TextStyle(fontFamily: 'JosefinSans'),
+                              ),
+                            ),
+                            Center(
+                              child: Text(
+                                'Dinner',
+                                style: TextStyle(fontFamily: 'JosefinSans'),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ), // Meal Picker
+                      Container(
+                        height: 150.0,
+                        width: 150.0,
+                        child: CupertinoPicker(
+                          scrollController:
+                              FixedExtentScrollController(initialItem: 1),
+                          itemExtent: 80.0,
+                          onSelectedItemChanged: (selectedIndex) {
+                            _selectFood(selectedIndex);
+                          },
+                          children: getFoodImages(20.0),
+                        ),
+                      ), //FoodPicker
                     ],
                   ),
-                ), //Days Overview
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    Container(
-                      height: 150.0,
-                      width: 100.0,
-                      child: CupertinoPicker(
-                        scrollController: FixedExtentScrollController(
-                            initialItem: setInitialSelectedMeal()),
-                        itemExtent: 50.0,
-                        onSelectedItemChanged: (selectedIndex) {
-                          _selectMeal(selectedIndex);
-                        },
-                        children: [
-                          Center(
-                            child: Text(
-                              'Breakfast',
-                              style: TextStyle(fontFamily: 'JosefinSans'),
-                            ),
-                          ),
-                          Center(
-                            child: Text(
-                              'Lunch',
-                              style: TextStyle(fontFamily: 'JosefinSans'),
-                            ),
-                          ),
-                          Center(
-                            child: Text(
-                              'Dinner',
-                              style: TextStyle(fontFamily: 'JosefinSans'),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ), // Meal Picker
-                    Container(
-                      height: 150.0,
-                      width: 150.0,
-                      child: CupertinoPicker(
-                        scrollController:
-                            FixedExtentScrollController(initialItem: 1),
-                        itemExtent: 80.0,
-                        onSelectedItemChanged: (selectedIndex) {
-                          _selectFood(selectedIndex);
-                        },
-                        children: getFoodImages(20.0),
-                      ),
-                    ), //FoodPicker
-                  ],
-                ),
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(0, 0, 15, 15),
-                  child: Align(
-                    alignment: Alignment.bottomRight,
-                    child: Ink(
-                      decoration: const ShapeDecoration(
-                        color: Colors.lightGreen,
-                        shape: CircleBorder(),
-                      ),
-                      child: IconButton(
-                        iconSize: 40.0,
-                        icon: Icon(Icons.add),
-                        color: Colors.white,
-                        onPressed: () {
-                          _submit();
-                        },
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(0, 0, 15, 15),
+                    child: Align(
+                      alignment: Alignment.bottomRight,
+                      child: Ink(
+                        decoration: const ShapeDecoration(
+                          color: Colors.lightGreen,
+                          shape: CircleBorder(),
+                        ),
+                        child: IconButton(
+                          iconSize: 40.0,
+                          icon: Icon(Icons.add),
+                          color: Colors.white,
+                          onPressed: () {
+                            _submit();
+                            Scaffold.of(context).showSnackBar(
+                              SnackBar(
+                                content: Text(
+                                  '$selectedFood added',
+                                  textAlign: TextAlign.center,
+                                ),
+                                backgroundColor: Colors.green,
+                                duration: Duration(seconds: 2),
+                              ),
+                            );
+                          },
+                        ),
                       ),
                     ),
-                  ),
-                ), //button
-              ],
+                  ), //button
+                ],
+              ),
             ),
-          ),
-          PageView(
-            //TODO: wrap report screens is cards to see progress during scrolling
-            scrollDirection: Axis.vertical,
-            children: getRecordScreens(6, 0),
-          ),
-          PageView(
-            scrollDirection: Axis.vertical,
-            children: getRecordScreens(30, 0),
-          ),
-        ],
+            PageView(
+              //TODO: wrap report screens is cards to see progress during scrolling
+              scrollDirection: Axis.vertical,
+              children: getRecordScreens(6, 0),
+            ),
+            PageView(
+              scrollDirection: Axis.vertical,
+              children: getRecordScreens(30, 0),
+            ),
+          ],
+        ),
       ),
     );
   }
