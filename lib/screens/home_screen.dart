@@ -189,7 +189,10 @@ class _MyHomePageState extends State<MyHomePage> {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
-                      DayRow(day: days[0], dataMap: dataMap[dateStampToday]),
+                      DayRow(
+                          day: days[0],
+                          dataMap: dataMap[dateStampToday],
+                          isToday: true),
                       DayRow(
                           day: days[1],
                           dataMap: dataMap[

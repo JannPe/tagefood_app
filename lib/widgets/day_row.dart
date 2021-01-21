@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 
 class DayRow extends StatelessWidget {
-  DayRow({this.dataMap, this.day});
+  DayRow({@required this.dataMap, @required this.day, this.isToday});
 
   final dataMap;
   final day;
+  final isToday;
 
   @override
   Widget build(BuildContext context) {
@@ -15,10 +16,11 @@ class DayRow extends StatelessWidget {
           children: [
             Text(
               day,
-              style: day == 'Sat' || day == 'Sun'
+              style: isToday == true
                   ? TextStyle(
-                      fontSize: 30.0,
-                      color: Colors.blueGrey[300],
+                      fontSize: 35.0,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.blueGrey,
                       fontFamily: 'Kalam')
                   : TextStyle(
                       fontSize: 30.0,
