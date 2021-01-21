@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
 
 class DayRow extends StatelessWidget {
-  DayRow({@required this.dataMap, @required this.day, this.isToday});
+  DayRow(
+      {@required this.dataMap,
+      @required this.day,
+      @required this.date,
+      this.isToday});
 
   final Map dataMap;
-  final day;
-  final isToday;
+  final String day;
+  final DateTime date;
+  final bool isToday;
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +31,15 @@ class DayRow extends StatelessWidget {
                       fontSize: 30.0,
                       color: Colors.blueGrey,
                       fontFamily: 'Kalam'),
-            ), //Day
+            ),
+            Spacer(),
+            Padding(
+              padding: const EdgeInsets.only(right: 20.0),
+              child: Text(
+                '${date.day.toString()}.${date.month.toString()}.',
+                style: TextStyle(color: Colors.grey),
+              ),
+            ),
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 2.0),
               child: Row(

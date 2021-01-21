@@ -190,35 +190,42 @@ class _MyHomePageState extends State<MyHomePage> {
                     children: <Widget>[
                       DayRow(
                           day: days[0],
+                          date: dateStampToday,
                           dataMap: dataMap[dateStampToday],
                           isToday: true),
                       DayRow(
                           day: days[1],
+                          date: dateStampToday.subtract(Duration(days: 1)),
                           dataMap: dataMap[
                                   dateStampToday.subtract(Duration(days: 1))] ??
                               {'Breakfast': '', 'Lunch': '', 'Dinner': ''}),
                       DayRow(
                           day: days[2],
+                          date: dateStampToday.subtract(Duration(days: 2)),
                           dataMap: dataMap[
                                   dateStampToday.subtract(Duration(days: 2))] ??
                               {'Breakfast': '', 'Lunch': '', 'Dinner': ''}),
                       DayRow(
                           day: days[3],
+                          date: dateStampToday.subtract(Duration(days: 3)),
                           dataMap: dataMap[
                                   dateStampToday.subtract(Duration(days: 3))] ??
                               {'Breakfast': '', 'Lunch': '', 'Dinner': ''}),
                       DayRow(
                           day: days[4],
+                          date: dateStampToday.subtract(Duration(days: 4)),
                           dataMap: dataMap[
                                   dateStampToday.subtract(Duration(days: 4))] ??
                               {'Breakfast': '', 'Lunch': '', 'Dinner': ''}),
                       DayRow(
                           day: days[5],
+                          date: dateStampToday.subtract(Duration(days: 5)),
                           dataMap: dataMap[
                                   dateStampToday.subtract(Duration(days: 5))] ??
                               {'Breakfast': '', 'Lunch': '', 'Dinner': ''}),
                       DayRow(
                           day: days[6],
+                          date: dateStampToday.subtract(Duration(days: 6)),
                           dataMap: dataMap[
                                   dateStampToday.subtract(Duration(days: 6))] ??
                               {'Breakfast': '', 'Lunch': '', 'Dinner': ''}),
@@ -298,7 +305,8 @@ class _MyHomePageState extends State<MyHomePage> {
               ],
             ),
           ),
-          PageView( //TODO: wrap report screens is cards to see progress during scrolling
+          PageView(
+            //TODO: wrap report screens is cards to see progress during scrolling
             scrollDirection: Axis.vertical,
             children: getRecordScreens(6, 0),
           ),
