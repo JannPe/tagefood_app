@@ -207,7 +207,7 @@ class _MyHomePageState extends State<MyHomePage> {
               child: Stack(
                 children: [
                   Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
                       Padding(
                         padding: const EdgeInsets.fromLTRB(10, 10, 10, 5),
@@ -335,45 +335,59 @@ class _MyHomePageState extends State<MyHomePage> {
                               },
                               children: getFoodImages(20.0),
                             ),
-                          ), //FoodPicker
+                          ),
+//FoodPicker
                         ],
                       ),
-                      FlatButton(
-                        onPressed: () => _selectDate(context),
-                        child: Text(
-                            'Select Date: ${selectedDate.day}.${selectedDate.month}.'),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          FlatButton(
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(50)),
+                            color: Colors.green[100],
+                            onPressed: () => _selectDate(context),
+                            child: Text(
+                              'Select Date: ${selectedDate.day}.${selectedDate.month}.',
+                              style: TextStyle(color: Colors.green[500]),
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.all(16.0),
+                            child: Align(
+                              alignment: Alignment.bottomRight,
+                              child: Ink(
+                                decoration: const ShapeDecoration(
+                                  color: Colors.lightGreen,
+                                  shape: CircleBorder(),
+                                ),
+                                child: IconButton(
+                                  iconSize: 40.0,
+                                  icon: Icon(Icons.add),
+                                  color: Colors.white,
+                                  onPressed: () {
+                                    _submit();
+                                    Scaffold.of(context).showSnackBar(
+                                      SnackBar(
+                                        content: Text(
+                                          '$selectedFood added to the ${selectedDate.day}.${selectedDate.month}.',
+                                          textAlign: TextAlign.center,
+                                          style: TextStyle(
+                                              fontFamily: 'JosefinSans'),
+                                        ),
+                                        backgroundColor: Colors.green,
+                                        duration: Duration(seconds: 3),
+                                      ),
+                                    );
+                                  },
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
                     ],
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.fromLTRB(0, 0, 15, 40),
-                    child: Align(
-                      alignment: Alignment.bottomRight,
-                      child: Ink(
-                        decoration: const ShapeDecoration(
-                          color: Colors.lightGreen,
-                          shape: CircleBorder(),
-                        ),
-                        child: IconButton(
-                          iconSize: 40.0,
-                          icon: Icon(Icons.add),
-                          color: Colors.white,
-                          onPressed: () {
-                            _submit();
-                            Scaffold.of(context).showSnackBar(
-                              SnackBar(
-                                content: Text(
-                                  '$selectedFood added',
-                                  textAlign: TextAlign.center,
-                                ),
-                                backgroundColor: Colors.green,
-                                duration: Duration(seconds: 2),
-                              ),
-                            );
-                          },
-                        ),
-                      ),
-                    ),
                   ),
                 ],
               ),
