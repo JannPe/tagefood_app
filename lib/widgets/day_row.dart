@@ -47,7 +47,7 @@ class DayRow extends StatelessWidget {
                 children: [
                   Image.asset(
                     'assets/${dataMap['Breakfast']}.png',
-                    width: 50.0,
+                    width: 40.0,
                     fit: BoxFit.cover,
                   ), //Breakfast
                   Container(
@@ -62,7 +62,7 @@ class DayRow extends StatelessWidget {
                   ), //green line between Icons
                   Image.asset(
                     'assets/${dataMap['Lunch']}.png',
-                    width: 50.0,
+                    width: 40.0,
                     fit: BoxFit.cover,
                   ), //Lunch
                   Container(
@@ -77,7 +77,7 @@ class DayRow extends StatelessWidget {
                   ), // green line between Icons
                   Image.asset(
                     'assets/${dataMap['Dinner']}.png',
-                    width: 50.0,
+                    width: 40.0,
                     fit: BoxFit.cover,
                   ), //Dinner
                 ],
